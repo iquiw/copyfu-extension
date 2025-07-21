@@ -1,7 +1,18 @@
-# WXT + Svelte
+# Copy Formatted URL and title
 
-This template should help get you started developing with Svelte in WXT.
+This is a web extension to copy URL and title with formatted by [Liquid](https://liquidjs.com) templates.
 
-## Recommended IDE Setup
+## TODO
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- [x] Copy formatted template
+- [x] Save format templates
+- [ ] Sort format templates by DnD
+- [x] Shortcut for popup
+- [ ] Shortcut for copy
+- [ ] App icon
+- [ ] Icon font
+- [ ] Liquid filter `sub`
+- [ ] Liquid filter `match`
+- [ ] Export
+- [ ] Import
+- [ ] I18N
