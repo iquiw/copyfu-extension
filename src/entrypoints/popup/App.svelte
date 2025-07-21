@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Format from './Format.svelte'
+  import Format from './Format.svelte';
 </script>
 
 <main>

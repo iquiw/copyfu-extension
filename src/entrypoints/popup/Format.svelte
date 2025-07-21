@@ -2,7 +2,7 @@
   import { copyFormattedTemplate } from '../../lib/clipboard';
   import { loadTemplates } from '../../lib/storage';
 
-  async function copy(template: string): void {
+  async function copy(template: string): Promise<void> {
     await copyFormattedTemplate(template);
     window.close();
   }

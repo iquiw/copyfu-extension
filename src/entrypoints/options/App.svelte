@@ -1,14 +1,20 @@
 <script lang="ts">
   import { Toaster, createToaster } from '@skeletonlabs/skeleton-svelte';
 
-  import TemplateEdit from './TemplateEdit.svelte';
   import { loadTemplates, saveTemplates } from '../../lib/storage';
+  import TemplateEdit from './TemplateEdit.svelte';
+
+  interface FormatTemplateForm {
+    name: string,
+    template: string,
+    error: string | null,
+  }
 
   const toaster = createToaster({
      placement: 'top-end'
   });
 
-  let ftempls = $state([]);
+  let ftempls: FormatTemplateForm[] = $state([]);
   let storagePromise = $state(loadTemplates().then((ftemplsLoad) => {
     for (let ftempl of ftemplsLoad) {
       addTemplate(ftempl.name, ftempl.template);
@@ -23,12 +29,12 @@
     ftempls.push({ name, template, error: null, });
   }
 
-  function add(name: string = '', template: string = ''): Promise<void> {
+  function add(name: string = '', template: string = ''): Promise<null> {
     addTemplate();
-    return Promise.resolve();
+    return Promise.resolve(null);
   }
 
-  async function save(): Promise<void> {
+  async function save(): Promise<null> {
     let ftemplsSave = [];
     let hasError = false;
     for (let i = 0; i < ftempls.length; ) {

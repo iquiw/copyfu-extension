@@ -10,8 +10,8 @@ export async function copyFormattedTemplate(template: string) {
   if (tabs.length > 0) {
     const tab = tabs[0];
     const text = await formatTemplate(template, {
-      url: tab.url,
-      title: tab.title
+      url: tab.url ?? '',
+      title: tab.title ?? '',
     });
     console.log(text);
     navigator.clipboard.writeText(text);
