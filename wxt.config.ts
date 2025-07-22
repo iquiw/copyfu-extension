@@ -14,7 +14,7 @@ export default defineConfig({
       },
     },
   },
-  modules: ['@wxt-dev/module-svelte'],
+  modules: ['@wxt-dev/auto-icons', '@wxt-dev/module-svelte'],
 
   vite: () => ({
     plugins: [
