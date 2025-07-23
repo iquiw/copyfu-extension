@@ -13,6 +13,11 @@ export default defineConfig({
         },
       },
     },
+    browser_specific_settings: {
+      gecko: {
+        "id": "{ea350ae6-d119-44b0-a6d7-91b9235ad119}",
+      },
+    },
   },
   modules: ['@wxt-dev/auto-icons', '@wxt-dev/module-svelte'],
 
