@@ -9,10 +9,11 @@ This is a web extension to copy URL and title with formatted by [Liquid](https:/
 - [ ] Sort format templates by DnD
 - [x] Shortcut for popup
 - [ ] Shortcut for copy
-- [ ] App icon
+- [x] App icon
 - [ ] Icon font
 - [ ] Liquid filter `sub`
 - [ ] Liquid filter `match`
 - [ ] Export
 - [ ] Import
 - [ ] I18N
+- [ ] Presets
