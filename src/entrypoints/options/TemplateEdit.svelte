@@ -1,25 +1,25 @@
-<script>
+<script lang="ts">
   import { formatTemplate } from '../../lib/format';
 
   let { index, error, name = $bindable(''), value = $bindable('') } = $props();
 
   let exampleContext = {
-      url: 'https://example.com',
-      title: 'タイトル',
+    url: 'https://example.com',
+    title: 'タイトル',
   };
 
-  let format = (template) => {
-      try {
-          return formatTemplate(template, exampleContext);
-      } catch (e) {
-          return e;
-      }
+  function format(template: string): any {
+    try {
+      return formatTemplate(template, exampleContext);
+    } catch (e) {
+      return e;
+    }
   };
 
   let clear = () => {
-      name = '';
-      value = '';
-      error = '';
+    name = '';
+    value = '';
+    error = '';
   };
 </script>
 

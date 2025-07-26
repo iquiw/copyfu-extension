@@ -7,7 +7,7 @@ export interface FormatContext {
   title: string,
 }
 
-export function formatTemplate(template: string, context: FormatContext) {
+export function formatTemplate(template: string, context: FormatContext): any {
   const text = engine.parseAndRenderSync(template, {
     url: context.url,
     title: context.title,
