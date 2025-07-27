@@ -26,3 +26,22 @@
 CopyFU is a Web Extension to copy URL and title of the current tab.
 URL and title can be formatted user-defined [Liquid](https://liquidjs.com) templates.
 
+## Development
+
+### Prerequisites
+
+[bun](https://bun.sh) needs to be installed.
+
+Then install dependencies.
+
+```console
+$ bun i
+```
+
+### Build
+
+```console
+$ bun run zip             # for Chrome
+$ bun run zip:firefox     # for Firefox
+```
+
