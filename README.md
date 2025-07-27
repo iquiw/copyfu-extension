@@ -1,18 +1,3 @@
-## TODO
-
-- [x] Copy formatted template
-- [x] Save format templates
-- [ ] Sort format templates by DnD
-- [x] Shortcut for popup
-- [ ] Shortcut for copy
-- [x] App icon
-- [ ] Icon font
-- [ ] Liquid filter `sub`
-- [ ] Liquid filter `match`
-- [ ] Export
-- [ ] Import
-- [ ] I18N
-- [ ] Presets
 <p align="center">
   <picture style="vertical-align: bottom;">
     <img src="./src/assets/icon.png" height="64">
@@ -45,3 +30,19 @@ $ bun run zip             # for Chrome
 $ bun run zip:firefox     # for Firefox
 ```
 
+### TODO
+
+- [x] Copy formatted template
+- [x] Save format templates
+- [x] Sort format templates by DnD
+- [x] Shortcut for popup
+- [ ] Shortcuts for copy
+- [x] App icon
+- [x] Icon font
+- [ ] Liquid filter `sub`
+- [ ] Liquid filter `match`
+- [ ] Export
+- [ ] Import
+- [ ] I18N
+- [ ] Presets
+- [ ] Visual effect at copy
