@@ -29,6 +29,7 @@
   "dependencies": {
     "@lucide/svelte": "^0.525.0",
     "@tailwindcss/vite": "^4.1.11",
+    "@thisux/sveltednd": "^0.0.20",
     "liquidjs": "^10.21.1",
     "tailwindcss": "^4.1.11"
   }
