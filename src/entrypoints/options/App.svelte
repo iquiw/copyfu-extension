@@ -108,7 +108,7 @@
     <div class="grid grid-cols-2 gap-8">
       {#each ftempls as ftempl, index (ftempl.id)}
         <div class="card cursor-move w-full preset-outlined-primary-500 p-2"
-          use:draggable={{ container: index.toString(), dragData: ftempl }}
+          use:draggable={{ container: index.toString(), dragData: ftempl, interactive: ['.interactive'] }}
           use:droppable={{ container: index.toString(), callbacks: { onDrop: handleDrop } }}
           animate:flip={{ duration: 200 }}
           in:fade={{ duration: 150 }}
