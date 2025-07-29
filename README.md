@@ -7,6 +7,7 @@
 # CopyFU
 
 [![Firefox Add-on](https://img.shields.io/amo/v/copyfu?style=for-the-badge)](https://addons.mozilla.org/ja/firefox/addon/copyfu/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/egakkoaaohhnfppfhccbklamlcdfabff?style=for-the-badge)](https://chromewebstore.google.com/detail/copyfu/egakkoaaohhnfppfhccbklamlcdfabff)
 
 CopyFU is a Web Extension to copy URL and title of the current tab.
 URL and title can be formatted user-defined [Liquid](https://liquidjs.com) templates.
