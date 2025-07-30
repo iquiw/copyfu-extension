@@ -12,6 +12,20 @@
 CopyFU is a Web Extension to copy URL and title of the current tab.
 URL and title can be formatted user-defined [Liquid](https://liquidjs.com) templates.
 
+## Usage
+
+### Popup
+
+By clicking CopyFU icon on the toolbar, popup window is shown.
+Then clicking one of the template buttons copied formatted URL and title to clipboard.
+
+#### Available keyboard shortcuts
+
+| Shortcut                    | Action                                                      |
+| ---                         | ---                                                         |
+| <kbd>Ctrl+Shift+U</kbd>     | Open CopyFU popup                                           |
+| <kbd>1</kbd> ~ <kbd>9</kbd> | Copy formatted URL and title with template indexed by 1 ~ 9 |
+
 ## Development
 
 ### Prerequisites
