@@ -27,23 +27,23 @@
 <label class="label">
   <span class="label-text">Name</span>
   {#if error == 'Name'}
-  <input class="input border-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer" bind:value={name} required/>
+  <input class="input border-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer interactive" bind:value={name} required/>
   <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
     Please input Name!
   </span>
   {:else}
-  <input class="input placeholder-gray-300 dark:placeholder-gray-600" bind:value={name} placeholder="Markdown" required/>
+  <input class="input placeholder-gray-300 dark:placeholder-gray-600 interactive" bind:value={name} placeholder="Markdown" required/>
   {/if}
 </label>
 <label class="label">
   <span class="label-text">Template</span>
   {#if error == 'Template'}
-  <textarea class="textarea border-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer" bind:value={value} required></textarea>
+  <textarea class="textarea border-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer interactive" bind:value={value} required></textarea>
   <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
     Please input Template!
   </span>
   {:else}
-  <textarea class="textarea placeholder-gray-300 dark:placeholder-gray-600" bind:value={value} placeholder="[&lbrace;&lbrace;title&rbrace;&rbrace;](&lbrace;&lbrace;url&rbrace;&rbrace;)" required></textarea>
+  <textarea class="textarea placeholder-gray-300 dark:placeholder-gray-600 interactive" bind:value={value} placeholder="[&lbrace;&lbrace;title&rbrace;&rbrace;](&lbrace;&lbrace;url&rbrace;&rbrace;)" required></textarea>
   {/if}
 </label>
 <label class="label">
