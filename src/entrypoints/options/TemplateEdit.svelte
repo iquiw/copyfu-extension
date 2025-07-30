@@ -23,7 +23,7 @@
   };
 </script>
 
-<header class="header bg-surface-50 rounded-md p-2">Template {index}</header>
+<header class="header bg-surface-50 dark:text-gray-800 rounded-md p-2">Template {index}</header>
 <label class="label">
   <span class="label-text">Name</span>
   {#if error == 'Name'}
@@ -32,7 +32,7 @@
     Please input Name!
   </span>
   {:else}
-  <input class="input placeholder-gray-300" bind:value={name} placeholder="Markdown" required/>
+  <input class="input placeholder-gray-300 dark:placeholder-gray-600" bind:value={name} placeholder="Markdown" required/>
   {/if}
 </label>
 <label class="label">
@@ -43,12 +43,12 @@
     Please input Template!
   </span>
   {:else}
-  <textarea class="textarea placeholder-gray-300" bind:value={value} placeholder="[&lbrace;&lbrace;title&rbrace;&rbrace;](&lbrace;&lbrace;url&rbrace;&rbrace;)" required></textarea>
+  <textarea class="textarea placeholder-gray-300 dark:placeholder-gray-600" bind:value={value} placeholder="[&lbrace;&lbrace;title&rbrace;&rbrace;](&lbrace;&lbrace;url&rbrace;&rbrace;)" required></textarea>
   {/if}
 </label>
 <label class="label">
   <span class="label-text">Example output</span>
-  <textarea class="textarea bg-surface-100" readonly tabindex="-1">{format(value)}</textarea>
+  <textarea class="textarea bg-surface-100 dark:text-surface-800" readonly tabindex="-1">{format(value)}</textarea>
 </label>
 <div class="grid justify-center m-2">
   <button class="btn preset-tonal interactive" onclick={clear} z-index="1000">Clear</button>
