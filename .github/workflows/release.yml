@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Check version in package.json
+        run: |
+          version=$(bun -p 'import { version } from "./package.json"; version')
+          test "$version" = "${{ github.ref_name }}"
+
+      - name: Install dependencies
+        run: |
+          bun install
+
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: -vv --latest --strip header
+        env:
+          OUTPUT: CHANGELOG.md
+
+      - name: Zip extensions
+        run: |
+          bun run zip
+          bun run zip:firefox
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ".output/*.zip"
+          artifactContentType: application/octet-stream
+          name: v${{ github.ref_name }}
+          body: ${{ steps.git-cliff.outputs.content }}
+          token: ${{ secrets.GITHUB_TOKEN }}
