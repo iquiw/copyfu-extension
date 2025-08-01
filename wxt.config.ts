@@ -18,6 +18,7 @@ export default defineConfig({
         "id": "{ea350ae6-d119-44b0-a6d7-91b9235ad119}",
       },
     },
+    homepage_url: "https://github.com/iquiw/copyfu-extension",
   },
   modules: ['@wxt-dev/auto-icons', '@wxt-dev/module-svelte'],
 
