@@ -6,6 +6,7 @@
 
   import { loadTemplates, saveTemplates } from '../../lib/storage';
   import TemplateEdit from './TemplateEdit.svelte';
+  import appIcon from '../../assets/copyfu.svg';
 
   interface FormatTemplateForm {
     id: string,
@@ -86,6 +87,10 @@
     }
   }
 </script>
+
+<svelte:head>
+  <link rel="icon" type="image/svg+xml" href="{appIcon}" />
+</svelte:head>
 
 <main>
   <Toaster {toaster}></Toaster>
