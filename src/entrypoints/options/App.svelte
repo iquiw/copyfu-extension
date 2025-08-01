@@ -104,8 +104,8 @@
       <p>To change the order, drag and drop the templates. To delete a template, clear the template and save.</p>
     </div>
     <div class="flex space-x-2">
-      <button class="btn preset-filled-success-500" onclick={() => storagePromise = save()}>Save</button>
-      <button class="btn preset-filled-primary-500" onclick={() => storagePromise = add()}>Add</button>
+      <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" onclick={() => storagePromise = save()}>Save</button>
+      <button class="btn preset-filled-primary-300-700 dark:preset-filled-primary-900-100" onclick={() => storagePromise = add()}>Add</button>
     </div>
     {#await storagePromise}
     <p>Loading...</p>
