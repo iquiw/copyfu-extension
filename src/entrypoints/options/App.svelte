@@ -46,6 +46,7 @@
       let ftempl = ftempls[i];
       let name = ftempl.name.trim();
       let template = ftempl.template;
+      ftempl.error = null;
       if (name == '') {
         if (template == '') {
           // skip
