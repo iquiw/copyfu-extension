@@ -6,6 +6,7 @@ interface FormatTemplate {
   name: string;
   template: string;
 }
+export type { FormatTemplate };
 
 const formatTemplates = storage.defineItem<FormatTemplate[]>(
   FORMAT_TEMPLATE_KEY,

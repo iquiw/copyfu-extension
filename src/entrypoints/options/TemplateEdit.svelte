@@ -51,5 +51,5 @@
   <textarea class="textarea bg-surface-100 dark:text-surface-800" readonly tabindex="-1">{format(value)}</textarea>
 </label>
 <div class="grid justify-center m-2">
-  <button class="btn preset-tonal interactive" onclick={clear} z-index="1000">Clear</button>
+  <button class="btn preset-tonal interactive" onclick={clear}>Clear</button>
 </div>

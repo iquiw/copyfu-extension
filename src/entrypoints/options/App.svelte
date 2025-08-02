@@ -78,19 +78,23 @@
     return null;
   }
 
-  let dragState = null;
+  interface DragState {
+    ftemplId: string,
+  };
+
+  let dragState: DragState | null = null;
 
   const positionComp = new Compartment(() =>
     position({ current: null }),
   );
 
-  function findTargetIndex(event, ftemplId: string): number {
+  function findTargetIndex(event: PointerEvent): number {
     let elements = document.elementsFromPoint(event.clientX, event.clientY);
     for (let element of elements) {
       let indexStr = element.getAttribute('data-ftempl-index');
       if (indexStr != null) {
         let index = parseInt(indexStr, 10);
-        if (ftempls[index].id !== ftemplId) {
+        if (ftempls[index].id !== dragState?.ftemplId) {
           return index;
         }
       }
@@ -130,16 +134,13 @@
             controls({ allow: ControlFrom.selector('.header') }),
             events({
               onDragStart: (data) => {
-                data.rootNode.style.zIndex = 100;
+                data.rootNode.style.zIndex = '100';
                 dragState = { ftemplId: ftempl.id };
               },
               onDragEnd: (data) => {
                 data.rootNode.style.zIndex = '';
-                if (dragState == null) {
-                  return;
-                }
-                const dragIndex = ftempls.findIndex((ftempl: FormatTemplateForm) => ftempl.id === dragState.ftemplId);;
-                const dropIndex = findTargetIndex(data.event, dragState.ftemplId);
+                const dragIndex = ftempls.findIndex((ftempl: FormatTemplateForm) => ftempl.id === dragState?.ftemplId);;
+                const dropIndex = findTargetIndex(data.event);
 
                 positionComp.current = position({ current: { x: 0, y: 0 } });
                 if (dragIndex !== -1 && dropIndex !== -1 && !isNaN(dropIndex)) {

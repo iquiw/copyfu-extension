@@ -1,8 +1,9 @@
 <script lang="ts">
   import { copyFormattedTemplate } from '../../lib/clipboard';
   import { loadTemplates } from '../../lib/storage';
+  import type { FormatTemplate } from '../../lib/storage';
 
-  let formatsCache = null;
+  let formatsCache: FormatTemplate[] | null = null;
 
   async function copy(index: number): Promise<void> {
     if (formatsCache != null && index < formatsCache.length) {
@@ -12,7 +13,7 @@
     }
   }
 
-  function handleKeydown(event) {
+  function handleKeydown(event: KeyboardEvent) {
     if (event.key >= '1' || event.key <= '9') {
       let number = parseInt(event.key, 10);
       if (number > 0) {
