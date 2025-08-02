@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Toaster, createToaster } from '@skeletonlabs/skeleton-svelte';
-  import { draggable, droppable, type DragDropState } from '@thisux/sveltednd';
+  import { draggable, controls, events, bounds, position, BoundsFrom, Compartment, ControlFrom } from '@neodrag/svelte';
+
   import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
 
@@ -77,15 +78,24 @@
     return null;
   }
 
-  function handleDrop(state: DragDropState<FormatTemplateForm>) {
-    const { draggedItem, targetContainer } = state;
-    const dragIndex = ftempls.findIndex((ftempl: FormatTemplateForm) => ftempl.id === draggedItem.id);
-    const dropIndex = parseInt(targetContainer ?? '0');
+  let dragState = null;
 
-    if (dragIndex !== -1 && !isNaN(dropIndex)) {
-      const [item] = ftempls.splice(dragIndex, 1);
-      ftempls.splice(dropIndex, 0, item);
+  const positionComp = new Compartment(() =>
+    position({ current: null }),
+  );
+
+  function findTargetIndex(event, ftemplId: string): number {
+    let elements = document.elementsFromPoint(event.clientX, event.clientY);
+    for (let element of elements) {
+      let indexStr = element.getAttribute('data-ftempl-index');
+      if (indexStr != null) {
+        let index = parseInt(indexStr, 10);
+        if (ftempls[index].id !== ftemplId) {
+          return index;
+        }
+      }
     }
+    return -1;
   }
 </script>
 
@@ -113,12 +123,34 @@
     {:then dummy}
     <div class="grid grid-cols-2 gap-8">
       {#each ftempls as ftempl, index (ftempl.id)}
-        <div class="card cursor-move w-full preset-outlined-primary-500 p-2"
-          use:draggable={{ container: index.toString(), dragData: ftempl, interactive: ['.interactive'] }}
-          use:droppable={{ container: index.toString(), callbacks: { onDrop: handleDrop } }}
-          animate:flip={{ duration: 200 }}
-          in:fade={{ duration: 150 }}
-          out:fade={{ duration: 150 }}>
+        <div class="card w-full preset-outlined-primary-500 p-2"
+          data-ftempl-index={index}
+          {@attach draggable(() => [
+            positionComp,
+            controls({ allow: ControlFrom.selector('.header') }),
+            events({
+              onDragStart: (data) => {
+                data.rootNode.style.zIndex = 100;
+                dragState = { ftemplId: ftempl.id };
+              },
+              onDragEnd: (data) => {
+                data.rootNode.style.zIndex = '';
+                if (dragState == null) {
+                  return;
+                }
+                const dragIndex = ftempls.findIndex((ftempl: FormatTemplateForm) => ftempl.id === dragState.ftemplId);;
+                const dropIndex = findTargetIndex(data.event, dragState.ftemplId);
+
+                positionComp.current = position({ current: { x: 0, y: 0 } });
+                if (dragIndex !== -1 && dropIndex !== -1 && !isNaN(dropIndex)) {
+                  const [item] = ftempls.splice(dragIndex, 1);
+                  ftempls.splice(dropIndex, 0, item);
+                }
+                dragState = null;
+              },
+            })
+          ])}
+          animate:flip={{ duration: 200 }}>
           <TemplateEdit index={index + 1} error={ftempl.error} bind:name={ftempl.name} bind:value={ftempl.template} />
         </div>
       {/each}
@@ -126,3 +158,9 @@
     {/await}
   </div>
 </main>
+
+<style>
+  .card {
+    background-color: inherit;
+  }
+</style>

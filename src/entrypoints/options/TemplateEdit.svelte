@@ -23,7 +23,7 @@
   };
 </script>
 
-<header class="header bg-surface-50 dark:text-gray-800 rounded-md p-2">Template {index}</header>
+<header class="header cursor-move bg-surface-50 dark:text-gray-800 rounded-md p-2">⋮⋮ Template {index}</header>
 <label class="label">
   <span class="label-text">Name</span>
   {#if error == 'Name'}
