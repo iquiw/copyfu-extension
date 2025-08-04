@@ -1,12 +1,13 @@
 <script lang="ts">
   import { Toaster, createToaster } from '@skeletonlabs/skeleton-svelte';
-  import { draggable, controls, events, bounds, position, BoundsFrom, Compartment, ControlFrom } from '@neodrag/svelte';
+  import { draggable, controls, events, position, Compartment, ControlFrom } from '@neodrag/svelte';
 
   import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
 
   import { loadTemplates, saveTemplates } from '../../lib/storage';
   import TemplateEdit from './TemplateEdit.svelte';
+  import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
   import appIcon from '../../assets/copyfu.svg';
 
   interface FormatTemplateForm {
@@ -130,6 +131,7 @@
         <div class="card w-full preset-outlined-primary-500 p-2"
           data-ftempl-index={index}
           {@attach draggable(() => [
+            flipWorkaroundPlugin(),
             positionComp,
             controls({ allow: ControlFrom.selector('.header') }),
             events({
@@ -151,7 +153,7 @@
               },
             })
           ])}
-          animate:flip={{ duration: 200 }}>
+          animate:flip={{ duration: flipDuration() }}>
           <TemplateEdit index={index + 1} error={ftempl.error} bind:name={ftempl.name} bind:value={ftempl.template} />
         </div>
       {/each}
