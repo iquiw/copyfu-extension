@@ -5,7 +5,8 @@
   import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
 
-  import { loadTemplates, saveTemplates } from '../../lib/storage';
+  import { loadTemplates, saveTemplates, serialize } from '../../lib/storage';
+  import type { FormatTemplate } from '../../lib/storage';
   import TemplateEdit from './TemplateEdit.svelte';
   import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
   import appIcon from '../../assets/copyfu.svg';
@@ -22,7 +23,10 @@
   });
 
   let ftempls: FormatTemplateForm[] = $state([]);
+  let ftemplsOriginal: FormatTemplate[] | null = $state(null);
+
   let storagePromise = $state(loadTemplates().then((ftemplsLoad) => {
+    ftemplsOriginal = ftemplsLoad;
     for (let ftempl of ftemplsLoad) {
       addTemplate(ftempl.name, ftempl.template);
     }
@@ -69,6 +73,7 @@
     }
     if (!hasError) {
       await saveTemplates(ftemplsSave);
+      ftemplsOriginal = ftemplsSave;
       toaster.success({
         title: 'Saved!'
       });
@@ -78,6 +83,13 @@
     }
     return null;
   }
+
+  let isModified = $derived.by(() => {
+    let original = serialize(ftemplsOriginal);
+    let current = serialize(ftempls);
+    let modified = original != current;
+    return modified;
+  });
 
   interface DragState {
     ftemplId: string,
@@ -120,7 +132,7 @@
       <p>To change the order, drag and drop the templates. To delete a template, clear the template and save.</p>
     </div>
     <div class="flex space-x-2">
-      <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" onclick={() => storagePromise = save()}>Save</button>
+      <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" disabled={!isModified} onclick={() => storagePromise = save()}>Save</button>
       <button class="btn preset-filled-primary-300-700 dark:preset-filled-primary-900-100" onclick={() => storagePromise = add()}>Add</button>
     </div>
     {#await storagePromise}
