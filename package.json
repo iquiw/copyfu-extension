@@ -11,6 +11,7 @@
     "svelte-check": "^4.3.1",
     "tslib": "^2.8.1",
     "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
     "wxt": "^0.20.7"
   },
   "description": "Copy Formatted URL and title",
@@ -23,7 +24,8 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox --mv3",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "test": "vitest"
   },
   "type": "module",
   "dependencies": {
