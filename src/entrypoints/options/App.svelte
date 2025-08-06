@@ -7,16 +7,13 @@
 
   import { loadTemplates, saveTemplates, serialize } from '../../lib/storage';
   import type { FormatTemplate } from '../../lib/storage';
+
+  import { validate } from './validate';
+  import type { FormatTemplateForm, FormatTemplateFormResult } from './validate';
+
   import TemplateEdit from './TemplateEdit.svelte';
   import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
   import appIcon from '../../assets/copyfu.svg';
-
-  interface FormatTemplateForm {
-    id: string,
-    name: string,
-    template: string,
-    error: string | null,
-  }
 
   const toaster = createToaster({
      placement: 'top-end'
@@ -46,40 +43,16 @@
   }
 
   async function save(): Promise<null> {
-    let ftemplsSave = [];
-    let hasError = false;
-    for (let i = 0; i < ftempls.length; ) {
-      let ftempl = ftempls[i];
-      let name = ftempl.name.trim();
-      let template = ftempl.template;
-      ftempl.error = null;
-      if (name == '') {
-        if (template == '') {
-          // skip
-          ftempls.splice(i, 1);
-          continue;
-        } else {
-          ftempl.error = 'Name';
-          hasError = true;
-        }
-      } else if (template == '') {
-        ftempl.error = 'Template';
-        hasError = true;
-      }
-      if (ftempl.error == null) {
-        ftemplsSave.push({ name, template })
-      }
-      i++;
-    }
-    if (!hasError) {
-      await saveTemplates(ftemplsSave);
-      ftemplsOriginal = ftemplsSave;
+    let result = validate(ftempls);
+    ftempls = result.ftempls;
+    if (!result.hasError) {
+      ftemplsOriginal = await saveTemplates(ftempls);
       toaster.success({
         title: 'Saved!'
       });
     }
     if (ftempls.length == 0) {
-      await add();
+      addTemplate();
     }
     return null;
   }

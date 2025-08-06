@@ -3,11 +3,10 @@ import { storage } from '#imports';
 const COPYFU_SERIALIZE_VERSION = '1';
 const FORMAT_TEMPLATE_KEY = 'local:copyfu-template';
 
-interface FormatTemplate {
+export interface FormatTemplate {
   name: string;
   template: string;
 }
-export type { FormatTemplate };
 
 const formatTemplates = storage.defineItem<FormatTemplate[]>(
   FORMAT_TEMPLATE_KEY,
@@ -25,11 +24,7 @@ export async function loadTemplates() : Promise<FormatTemplate[]> {
   return [];
 }
 
-export async function saveTemplates(ftempls: FormatTemplate[]) : Promise<void> {
-  await formatTemplates.setValue(ftempls);
-}
-
-export function serialize(ftempls: FormatTemplate[] | null): string {
+function sanitize(ftempls: FormatTemplate[] | null): FormatTemplate[] {
   let sanitized = [];
   if (ftempls != null) {
     // Skip if only one element exists with empty values.
@@ -42,8 +37,18 @@ export function serialize(ftempls: FormatTemplate[] | null): string {
       }
     }
   }
+  return sanitized;
+}
+
+export async function saveTemplates(ftempls: FormatTemplate[]) : Promise<FormatTemplate[]> {
+  let ftemplsSave = sanitize(ftempls);
+  await formatTemplates.setValue(ftemplsSave);
+  return ftemplsSave;
+}
+
+export function serialize(ftempls: FormatTemplate[] | null): string {
   return JSON.stringify({
     version: COPYFU_SERIALIZE_VERSION,
-    templates: sanitized,
+    templates: sanitize(ftempls),
   });
 }
