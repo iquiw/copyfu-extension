@@ -64,6 +64,13 @@
     return modified;
   });
 
+  function beforeUnload(event: BeforeUnloadEvent) {
+    if (isModified) {
+      event.preventDefault();
+      event.returnValue = true;
+    }
+  }
+
   interface DragState {
     ftemplId: string,
   };
@@ -88,6 +95,8 @@
     return -1;
   }
 </script>
+
+<svelte:window onbeforeunload={beforeUnload} />
 
 <svelte:head>
   <link rel="icon" type="image/svg+xml" href="{appIcon}" />
