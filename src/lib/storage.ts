@@ -52,3 +52,27 @@ export function serialize(ftempls: FormatTemplate[] | null): string {
     templates: sanitize(ftempls),
   });
 }
+
+export function deserialize(serialized: string): FormatTemplate[] {
+  let ftempls: FormatTemplate[] = [];
+  let rawData = JSON.parse(serialized);
+  if (rawData.version !== '1') {
+    throw new Error(`Unsupported version: ${rawData.version}`);
+  }
+  if (!rawData.templates) {
+    throw new Error('Property "templates" missing');
+  }
+  for (let raw of rawData.templates) {
+    if (raw.name == null) {
+      throw new Error('Property "name" missing');
+    }
+    if (raw.name == null || raw.template == null) {
+      throw new Error('Property "template" missing');
+    }
+    ftempls.push({
+      name: raw.name,
+      template: raw.template,
+    });
+  }
+  return ftempls;
+}
