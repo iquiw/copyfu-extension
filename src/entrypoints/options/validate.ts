@@ -7,32 +7,32 @@ export interface FormatTemplateForm {
 
 export interface FormatTemplateFormResult {
   hasError: boolean,
-  ftempls: FormatTemplateForm[],
+  ftemplForms: FormatTemplateForm[],
 }
 
-export function validate(ftempls: FormatTemplateForm[]): FormatTemplateFormResult {
+export function validate(ftemplsForm: FormatTemplateForm[]): FormatTemplateFormResult {
   let hasError = false;
   let result = [];
-  for (let ftempl of ftempls) {
-    let name = ftempl.name.trim();
-    let template = ftempl.template;
-    ftempl.error = null;
+  for (let ftemplForm of ftemplsForm) {
+    let name = ftemplForm.name.trim();
+    let template = ftemplForm.template;
+    ftemplForm.error = null;
     if (name == '') {
       if (template == '') {
         // skip
         continue;
       } else {
-        ftempl.error = 'Name';
+        ftemplForm.error = 'Name';
         hasError = true;
       }
     } else if (template == '') {
-      ftempl.error = 'Template';
+      ftemplForm.error = 'Template';
       hasError = true;
     }
-    result.push(ftempl);
+    result.push(ftemplForm);
   }
   return {
     hasError,
-    ftempls: result,
+    ftemplForms: result,
   };
 }

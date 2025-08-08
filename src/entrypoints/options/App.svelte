@@ -21,7 +21,7 @@
     placement: 'top-end'
   });
 
-  let ftempls: FormatTemplateForm[] = $state([]);
+  let ftemplForms: FormatTemplateForm[] = $state([]);
   let ftemplsOriginal: FormatTemplate[] | null = $state(null);
 
   let storagePromise = $state(loadTemplates().then((ftemplsLoad) => {
@@ -29,14 +29,14 @@
     for (let ftempl of ftemplsLoad) {
       addTemplate(ftempl.name, ftempl.template);
     }
-    if (ftempls.length == 0) {
+    if (ftemplForms.length == 0) {
       addTemplate();
     }
     return null;
   }));
 
   function addTemplate(name: string = '', template: string = ''): void {
-    ftempls.push({ id: crypto.randomUUID(), name, template, error: null, });
+    ftemplForms.push({ id: crypto.randomUUID(), name, template, error: null, });
   }
 
   function add(name: string = '', template: string = ''): Promise<null> {
@@ -45,15 +45,15 @@
   }
 
   async function save(): Promise<null> {
-    let result = validate(ftempls);
-    ftempls = result.ftempls;
+    let result = validate(ftemplForms);
+    ftemplForms = result.ftemplForms;
     if (!result.hasError) {
-      ftemplsOriginal = await saveTemplates(ftempls);
+      ftemplsOriginal = await saveTemplates(ftemplForms);
       toaster.success({
         title: 'Saved!'
       });
     }
-    if (ftempls.length == 0) {
+    if (ftemplForms.length == 0) {
       addTemplate();
     }
     return null;
@@ -61,7 +61,7 @@
 
   let isModified = $derived.by(() => {
     let original = serialize(ftemplsOriginal);
-    let current = serialize(ftempls);
+    let current = serialize(ftemplForms);
     let modified = original != current;
     return modified;
   });
@@ -89,7 +89,7 @@
       let indexStr = element.getAttribute('data-ftempl-index');
       if (indexStr != null) {
         let index = parseInt(indexStr, 10);
-        if (ftempls[index].id !== dragState?.ftemplId) {
+        if (ftemplForms[index].id !== dragState?.ftemplId) {
           return index;
         }
       }
@@ -114,7 +114,7 @@
     input.value = '';
     importTemplates(file,
       (ftemplsImport) => {
-        ftempls = [];
+        ftemplForms = [];
         for (let ftempl of ftemplsImport) {
           addTemplate(ftempl.name, ftempl.template);
         }
@@ -161,7 +161,7 @@
     <p>Loading...</p>
     {:then dummy}
     <div class="grid grid-cols-2 gap-8">
-      {#each ftempls as ftempl, index (ftempl.id)}
+      {#each ftemplForms as ftemplForm, index (ftemplForm.id)}
         <div class="card w-full preset-outlined-primary-500 p-2"
           data-ftempl-index={index}
           {@attach draggable(() => [
@@ -171,24 +171,24 @@
             events({
               onDragStart: (data) => {
                 data.rootNode.style.zIndex = '100';
-                dragState = { ftemplId: ftempl.id };
+                dragState = { ftemplId: ftemplForm.id };
               },
               onDragEnd: (data) => {
                 data.rootNode.style.zIndex = '';
-                const dragIndex = ftempls.findIndex((ftempl: FormatTemplateForm) => ftempl.id === dragState?.ftemplId);;
+                const dragIndex = ftemplForms.findIndex((ftemplForm: FormatTemplateForm) => ftemplForm.id === dragState?.ftemplId);;
                 const dropIndex = findTargetIndex(data.event);
 
                 positionComp.current = position({ current: { x: 0, y: 0 } });
                 if (dragIndex !== -1 && dropIndex !== -1 && !isNaN(dropIndex)) {
-                  const [item] = ftempls.splice(dragIndex, 1);
-                  ftempls.splice(dropIndex, 0, item);
+                  const [item] = ftemplForms.splice(dragIndex, 1);
+                  ftemplForms.splice(dropIndex, 0, item);
                 }
                 dragState = null;
               },
             })
           ])}
           animate:flip={{ duration: flipDuration() }}>
-          <TemplateEdit index={index + 1} error={ftempl.error} bind:name={ftempl.name} bind:value={ftempl.template} />
+          <TemplateEdit index={index + 1} error={ftemplForm.error} bind:name={ftemplForm.name} bind:value={ftemplForm.template} />
         </div>
       {/each}
     </div>
