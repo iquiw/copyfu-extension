@@ -8,6 +8,8 @@
   import { loadTemplates, saveTemplates, serialize } from '../../lib/storage';
   import type { FormatTemplate } from '../../lib/storage';
 
+  import { importTemplates, exportTemplates } from './imex';
+
   import { validate } from './validate';
   import type { FormatTemplateForm, FormatTemplateFormResult } from './validate';
 
@@ -16,7 +18,7 @@
   import appIcon from '../../assets/copyfu.svg';
 
   const toaster = createToaster({
-     placement: 'top-end'
+    placement: 'top-end'
   });
 
   let ftempls: FormatTemplateForm[] = $state([]);
@@ -94,6 +96,41 @@
     }
     return -1;
   }
+
+  function clickImportFile() {
+    let input = document.getElementById('import-file');
+    input?.click();
+  }
+
+  function handleImport(event: Event) {
+    let input = event.target as HTMLInputElement;
+    if (!input || !input.files) {
+      return;
+    }
+    let file = input.files[0];
+    if (!file) {
+      return;
+    }
+    input.value = '';
+    importTemplates(file,
+      (ftemplsImport) => {
+        ftempls = [];
+        for (let ftempl of ftemplsImport) {
+          addTemplate(ftempl.name, ftempl.template);
+        }
+        toaster.success({
+          title: 'Import Success',
+          description: 'Need to Save for persistence',
+        });
+      },
+      (error) => {
+        toaster.error({
+          title: 'Import Error',
+          description: error.message
+        });
+      }
+    );
+  }
 </script>
 
 <svelte:window onbeforeunload={beforeUnload} />
@@ -116,7 +153,10 @@
     <div class="flex space-x-2">
       <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" disabled={!isModified} onclick={() => storagePromise = save()}>Save</button>
       <button class="btn preset-filled-primary-300-700 dark:preset-filled-primary-900-100" onclick={() => storagePromise = add()}>Add</button>
+      <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={() => exportTemplates(ftemplsOriginal)}>Export saved templates</button>
+      <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={clickImportFile}>Import local JSON</button>
     </div>
+    <input id="import-file" class="hidden" type="file" onchange={handleImport}/>
     {#await storagePromise}
     <p>Loading...</p>
     {:then dummy}
@@ -155,9 +195,3 @@
     {/await}
   </div>
 </main>
-
-<style>
-  .card {
-    background-color: inherit;
-  }
-</style>
