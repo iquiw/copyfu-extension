@@ -140,7 +140,7 @@
 </svelte:head>
 
 <main>
-  <Toaster {toaster}></Toaster>
+  <Toaster {toaster} width="min-w-sm" messageClasses="toast-message"></Toaster>
   <div class="grid m-2 space-y-2">
     <h2 class="h2">CopyFU Options</h2>
     <div>
