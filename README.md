@@ -7,16 +7,24 @@
 # CopyFU
 
 [![Firefox Add-on](https://img.shields.io/amo/v/copyfu?style=for-the-badge)](https://addons.mozilla.org/ja/firefox/addon/copyfu/)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/egakkoaaohhnfppfhccbklamlcdfabff?style=for-the-badge)](https://chromewebstore.google.com/detail/copyfu/egakkoaaohhnfppfhccbklamlcdfabff)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/egakkoaaohhnfppfhccbklamlcdfabff?style=for-the-badge&color=blue)](https://chromewebstore.google.com/detail/copyfu/egakkoaaohhnfppfhccbklamlcdfabff)
 
-CopyFU is a Web Extension to copy URL and title of the current tab.
-URL and title can be formatted user-defined [Liquid](https://liquidjs.com) templates.
+CopyFU is a Web Extension to copy URL and title of the current tab.  
+URL and title can be formatted using user-defined [Liquid](https://liquidjs.com) templates.
+
+## Feature
+
+- Copy URL and title with customizable templates
+- User-defined Liquid templates for advanced formatting
+- Keyboard shortcuts for quick access
+- Export/import templates for backup and sharing
+- Drag-and-drop sorting for template management
 
 ## Usage
 
 ### Popup
 
-By clicking CopyFU icon on the toolbar, popup window is shown.
+By clicking CopyFU icon on the toolbar, popup window is shown.  
 Then clicking one of the template buttons copied formatted URL and title to clipboard.
 
 #### Available keyboard shortcuts
@@ -30,9 +38,8 @@ Then clicking one of the template buttons copied formatted URL and title to clip
 
 ### Prerequisites
 
-[bun](https://bun.sh) needs to be installed.
-
-Then install dependencies.
+[bun](https://bun.sh) needs to be installed.  
+Then, install dependencies.
 
 ```console
 $ bun i
@@ -56,8 +63,8 @@ $ bun run zip:firefox     # for Firefox
 - [x] Icon font
 - [ ] Liquid filter `sub`
 - [ ] Liquid filter `match`
-- [ ] Export
-- [ ] Import
+- [x] Export
+- [x] Import
 - [ ] I18N
 - [ ] Presets
 - [ ] Visual effect at copy
