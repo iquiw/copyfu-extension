@@ -6,7 +6,7 @@
 </script>
 
 <main>
-  <div class="grid grid-cols-1 gap-2 m-4">
+  <div class="grid grid-cols-1 gap-2 mx-3 mt-3 mb-2">
     <Format />
     <div class="flex justify-end">
       <img src={appIcon} class="logo" alt="CopyFU Logo" />
@@ -26,6 +26,6 @@
   }
   .h4 {
     height: 2.25rem;
-    line-height: 2.25rem;
+    line-height: 2.35rem;
   }
 </style>
