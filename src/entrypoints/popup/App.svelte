@@ -5,7 +5,7 @@
   import Format from './Format.svelte';
 </script>
 
-<main>
+<main class="border-2 border-tertiary-100 rounded-md">
   <div class="grid grid-cols-1 gap-2 mx-3 mt-3 mb-2">
     <Format />
     <div class="flex justify-end">
