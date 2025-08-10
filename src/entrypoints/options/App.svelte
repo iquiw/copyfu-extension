@@ -50,7 +50,7 @@
     if (!result.hasError) {
       ftemplsOriginal = await saveTemplates(ftemplForms);
       toaster.success({
-        title: 'Saved!'
+        title: browser.i18n.getMessage('options_success_saved'),
       });
     }
     if (ftemplForms.length == 0) {
@@ -119,13 +119,13 @@
           addTemplate(ftempl.name, ftempl.template);
         }
         toaster.success({
-          title: 'Import Success',
-          description: 'Need to Save for persistence',
+          title: browser.i18n.getMessage('options_success_imported'),
+          description: browser.i18n.getMessage('options_message_imported'),
         });
       },
       (error) => {
         toaster.error({
-          title: 'Import Error',
+          title: browser.i18n.getMessage('options_error_imported'),
           description: error.message
         });
       }
@@ -142,19 +142,17 @@
 <main>
   <Toaster {toaster} width="min-w-sm" messageClasses="toast-message"></Toaster>
   <div class="grid m-2 space-y-2">
-    <h2 class="h2">CopyFU Options</h2>
-    <div>
-      <p>Copy URL and Title with formatted by <a href="https://liquidjs.com" class="anchor">Liquid</a> template.</p>
-      <p>
-        <code class="code">&lbrace;&lbrace;url&rbrace;&rbrace;</code> and <code class="code">&lbrace;&lbrace;title&rbrace;&rbrace;</code> are replaced by actual URL and title of the current page.
-      </p>
-      <p>To change the order, drag and drop the templates. To delete a template, clear the template and save.</p>
+    <h2 class="h2">{browser.i18n.getMessage('options_title')}</h2>
+    <div class="text-sm">
+      <p>{@html browser.i18n.getMessage('options_help_text1')}</p>
+      <p>{@html browser.i18n.getMessage('options_help_text2')}</p>
+      <p>{@html browser.i18n.getMessage('options_help_text3')}</p>
     </div>
     <div class="flex space-x-2">
-      <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" disabled={!isModified} onclick={() => storagePromise = save()}>Save</button>
-      <button class="btn preset-filled-primary-300-700 dark:preset-filled-primary-900-100" onclick={() => storagePromise = add()}>Add</button>
-      <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={() => exportTemplates(ftemplsOriginal)}>Export saved templates</button>
-      <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={clickImportFile}>Import local JSON</button>
+      <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" disabled={!isModified} onclick={() => storagePromise = save()}>{browser.i18n.getMessage('options_button_save')}</button>
+      <button class="btn preset-filled-primary-300-700 dark:preset-filled-primary-900-100" onclick={() => storagePromise = add()}>{browser.i18n.getMessage('options_button_add')}</button>
+      <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={() => exportTemplates(ftemplsOriginal)}>{browser.i18n.getMessage('options_button_export')}</button>
+      <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={clickImportFile}>{browser.i18n.getMessage('options_button_import')}</button>
     </div>
     <input id="import-file" class="hidden" type="file" onchange={handleImport}/>
     {#await storagePromise}

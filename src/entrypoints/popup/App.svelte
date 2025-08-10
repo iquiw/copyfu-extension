@@ -12,7 +12,7 @@
       <img src={appIcon} class="logo" alt="CopyFU Logo" />
       <h4 class="h4">CopyFU</h4>
       <span class="grow"></span>
-      <button type="button" class="btn options" title="Options" onclick={() => browser.runtime.openOptionsPage()}>
+      <button type="button" class="btn options" title={browser.i18n.getMessage('options_title')} onclick={() => browser.runtime.openOptionsPage()}>
         <Settings size="24" />
       </button>
     </div>

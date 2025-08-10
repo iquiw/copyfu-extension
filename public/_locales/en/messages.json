@@ -1,0 +1,56 @@
+{
+  "options_button_add": {
+    "message": "Add Template"
+  },
+  "options_button_clear": {
+    "message": "Clear"
+  },
+  "options_button_export": {
+    "message": "Export Saved Templates"
+  },
+  "options_button_import": {
+    "message": "Import Local JSON"
+  },
+  "options_button_save": {
+    "message": "Save"
+  },
+  "options_error_imported": {
+    "message": "Import Error"
+  },
+  "options_error_name_missing": {
+    "message": "Please input Name!"
+  },
+  "options_error_template_missing": {
+    "message": "Please input Template!"
+  },
+  "options_help_text1": {
+    "message": "Templates are formatted by <a href=\"https://liquidjs.com\" class=\"anchor\">Liquid</a> template."
+  },
+  "options_help_text2": {
+    "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> and <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> are replaced by actual URL and title of the current page."
+  },
+  "options_help_text3": {
+    "message": "To change the order, drag and drop the templates. To delete a template, clear the template and save."
+  },
+  "options_label_name": {
+    "message": "Name"
+  },
+  "options_label_template": {
+    "message": "Template"
+  },
+  "options_label_example_output": {
+    "message": "Example Output"
+  },
+  "options_message_imported": {
+    "message": "Need to Save for persistence"
+  },
+  "options_success_imported": {
+    "message": "Import Success"
+  },
+  "options_success_saved": {
+    "message": "Saved!"
+  },
+  "options_title": {
+    "message": "CopyFU Options"
+  }
+}

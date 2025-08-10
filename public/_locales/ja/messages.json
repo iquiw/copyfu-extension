@@ -1,0 +1,56 @@
+{
+  "options_button_add": {
+    "message": "テンプレート追加"
+  },
+  "options_button_clear": {
+    "message": "クリア"
+  },
+  "options_button_export": {
+    "message": "保存した設定をエクスポート"
+  },
+  "options_button_import": {
+    "message": "ローカルJSONファイルをインポート"
+  },
+  "options_button_save": {
+    "message": "保存"
+  },
+  "options_error_imported": {
+    "message": "インポートエラー"
+  },
+  "options_error_name_missing": {
+    "message": "名前を入力してください!"
+  },
+  "options_error_template_missing": {
+    "message": "テンプレートを入力してください!"
+  },
+  "options_help_text1": {
+    "message": "テンプレートは <a href=\"https://liquidjs.com\" class=\"anchor\">Liquid</a> でフォーマットされます。"
+  },
+  "options_help_text2": {
+    "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> と <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> は現在のタブの URL とタイトルに変換されます。"
+  },
+  "options_help_text3": {
+    "message": "ドラッグ＆ドロップでテンプレートの順番を変えられます。クリアして保存することでテンプレートを削除できます。"
+  },
+  "options_label_name": {
+    "message": "名前"
+  },
+  "options_label_template": {
+    "message": "テンプレート"
+  },
+  "options_label_example_output": {
+    "message": "出力例"
+  },
+  "options_message_imported": {
+    "message": "まだ設定は保存されていません"
+  },
+  "options_success_imported": {
+    "message": "インポート成功"
+  },
+  "options_success_saved": {
+    "message": "保存しました!"
+  },
+  "options_title": {
+    "message": "CopyFU 設定"
+  }
+}
