@@ -26,7 +26,7 @@
 
   let storagePromise = $state(loadTemplates().then((ftemplsLoad) => {
     ftemplsOriginal = ftemplsLoad;
-    for (let ftempl of ftemplsLoad) {
+    for (const ftempl of ftemplsLoad) {
       addTemplate(ftempl.name, ftempl.template);
     }
     if (ftemplForms.length == 0) {
@@ -45,7 +45,7 @@
   }
 
   async function save(): Promise<null> {
-    let result = validate(ftemplForms);
+    const result = validate(ftemplForms);
     ftemplForms = result.ftemplForms;
     if (!result.hasError) {
       ftemplsOriginal = await saveTemplates(ftemplForms);
@@ -60,9 +60,9 @@
   }
 
   let isModified = $derived.by(() => {
-    let original = serialize(ftemplsOriginal);
-    let current = serialize(ftemplForms);
-    let modified = original != current;
+    const original = serialize(ftemplsOriginal);
+    const current = serialize(ftemplForms);
+    const modified = original != current;
     return modified;
   });
 
@@ -84,11 +84,11 @@
   );
 
   function findTargetIndex(event: PointerEvent): number {
-    let elements = document.elementsFromPoint(event.clientX, event.clientY);
-    for (let element of elements) {
-      let indexStr = element.getAttribute('data-ftempl-index');
+    const elements = document.elementsFromPoint(event.clientX, event.clientY);
+    for (const element of elements) {
+      const indexStr = element.getAttribute('data-ftempl-index');
       if (indexStr != null) {
-        let index = parseInt(indexStr, 10);
+        const index = parseInt(indexStr, 10);
         if (ftemplForms[index].id !== dragState?.ftemplId) {
           return index;
         }
@@ -98,16 +98,16 @@
   }
 
   function clickImportFile() {
-    let input = document.getElementById('import-file');
+    const input = document.getElementById('import-file');
     input?.click();
   }
 
   function handleImport(event: Event) {
-    let input = event.target as HTMLInputElement;
+    const input = event.target as HTMLInputElement;
     if (!input || !input.files) {
       return;
     }
-    let file = input.files[0];
+    const file = input.files[0];
     if (!file) {
       return;
     }
@@ -115,7 +115,7 @@
     importTemplates(file,
       (ftemplsImport) => {
         ftemplForms = [];
-        for (let ftempl of ftemplsImport) {
+        for (const ftempl of ftemplsImport) {
           addTemplate(ftempl.name, ftempl.template);
         }
         toaster.success({

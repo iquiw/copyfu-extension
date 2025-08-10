@@ -4,22 +4,22 @@ import { deserialize, serialize } from '../storage';
 
 describe('serialize', () => {
   it('should serialize empty templates', async () => {
-    let s = serialize([]);
+    const s = serialize([]);
     expect(s).toBe('{"version":"1","templates":[]}');
   });
 
   it('should serialize one template with empty values', async () => {
-    let s = serialize([{ name: '', template: '' }]);
+    const s = serialize([{ name: '', template: '' }]);
     expect(s).toBe('{"version":"1","templates":[]}');
   });
 
   it('should serialize one valid template', async () => {
-    let s = serialize([{ name: 'Markdown', template: '[{{title}}]({{url}})' }]);
+    const s = serialize([{ name: 'Markdown', template: '[{{title}}]({{url}})' }]);
     expect(s).toBe('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"}]}');
   });
 
   it('should serialize 2 valid templates and 1 empty template', async () => {
-    let s = serialize([
+    const s = serialize([
       { name: 'Markdown', template: '[{{title}}]({{url}})' },
       { name: 'Org Mode', template: '[[{{url}}][{{title}}]]' },
       { name: '', template: '' },
@@ -30,17 +30,17 @@ describe('serialize', () => {
 
 describe('deserialize', () => {
   it('should deserialize empty templates', async () => {
-    let ftempls = deserialize('{"version":"1","templates":[]}');
+    const ftempls = deserialize('{"version":"1","templates":[]}');
     expect(ftempls).toEqual([]);
   });
 
   it('should deserialize one template', async () => {
-    let ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"}]}');
+    const ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"}]}');
     expect(ftempls).toEqual([{ name: 'Markdown', template: '[{{title}}]({{url}})' }]);
   });
 
   it('should deserialize 2 templates', async () => {
-    let ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"},{"name":"Org Mode","template":"[[{{url}}][{{title}}]]"}]}');
+    const ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"},{"name":"Org Mode","template":"[[{{url}}][{{title}}]]"}]}');
     expect(ftempls).toEqual([
       { name: 'Markdown', template: '[{{title}}]({{url}})' },
       { name: 'Org Mode', template: '[[{{url}}][{{title}}]]' },
@@ -48,7 +48,7 @@ describe('deserialize', () => {
   });
 
   it('should ignore unknown properties', async () => {
-    let ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})","unknown":"foo"}],"unknown":"3"}');
+    const ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})","unknown":"foo"}],"unknown":"3"}');
     expect(ftempls).toEqual([
       { name: 'Markdown', template: '[{{title}}]({{url}})' },
     ]);

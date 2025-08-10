@@ -12,10 +12,10 @@ export interface FormatTemplateFormResult {
 
 export function validate(ftemplsForm: FormatTemplateForm[]): FormatTemplateFormResult {
   let hasError = false;
-  let result = [];
-  for (let ftemplForm of ftemplsForm) {
-    let name = ftemplForm.name.trim();
-    let template = ftemplForm.template;
+  const result = [];
+  for (const ftemplForm of ftemplsForm) {
+    const name = ftemplForm.name.trim();
+    const template = ftemplForm.template;
     ftemplForm.error = null;
     if (name == '') {
       if (template == '') {

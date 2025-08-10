@@ -7,7 +7,7 @@
 
   async function copy(index: number): Promise<void> {
     if (formatsCache != null && index < formatsCache.length) {
-      let template = formatsCache[index].template;
+      const template = formatsCache[index].template;
       await copyFormattedTemplate(template);
       window.close();
     }
@@ -15,7 +15,7 @@
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key >= '1' || event.key <= '9') {
-      let number = parseInt(event.key, 10);
+      const number = parseInt(event.key, 10);
       if (number > 0) {
         copy(number - 1);
       }

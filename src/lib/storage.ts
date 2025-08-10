@@ -17,7 +17,7 @@ const formatTemplates = storage.defineItem<FormatTemplate[]>(
 );
 
 export async function loadTemplates() : Promise<FormatTemplate[]> {
-  let ftempls = await formatTemplates.getValue();
+  const ftempls = await formatTemplates.getValue();
   if (ftempls != null) {
     return ftempls;
   }
@@ -25,11 +25,11 @@ export async function loadTemplates() : Promise<FormatTemplate[]> {
 }
 
 function sanitize(ftempls: FormatTemplate[] | null): FormatTemplate[] {
-  let sanitized = [];
+  const sanitized = [];
   if (ftempls != null) {
     // Skip if only one element exists with empty values.
     if (!(ftempls.length == 1 && ftempls[0].name == '' && ftempls[0].template == '')) {
-      for (let ftempl of ftempls) {
+      for (const ftempl of ftempls) {
         sanitized.push({
           name: ftempl.name,
           template: ftempl.template,
@@ -41,7 +41,7 @@ function sanitize(ftempls: FormatTemplate[] | null): FormatTemplate[] {
 }
 
 export async function saveTemplates(ftempls: FormatTemplate[]) : Promise<FormatTemplate[]> {
-  let ftemplsSave = sanitize(ftempls);
+  const ftemplsSave = sanitize(ftempls);
   await formatTemplates.setValue(ftemplsSave);
   return ftemplsSave;
 }
@@ -54,15 +54,15 @@ export function serialize(ftempls: FormatTemplate[] | null): string {
 }
 
 export function deserialize(serialized: string): FormatTemplate[] {
-  let ftempls: FormatTemplate[] = [];
-  let rawData = JSON.parse(serialized);
+  const ftempls: FormatTemplate[] = [];
+  const rawData = JSON.parse(serialized);
   if (rawData.version !== '1') {
     throw new Error(`Unsupported version: ${rawData.version}`);
   }
   if (!rawData.templates) {
     throw new Error('Property "templates" missing');
   }
-  for (let raw of rawData.templates) {
+  for (const raw of rawData.templates) {
     if (raw.name == null) {
       throw new Error('Property "name" missing');
     }

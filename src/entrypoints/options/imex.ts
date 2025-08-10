@@ -5,7 +5,7 @@ export function importTemplates(file: File,
   successCallback: (x: FormatTemplate[]) => void,
   errorCallback: (e: Error) => void)
 {
-  let reader = new FileReader();
+  const reader = new FileReader();
   reader.onload = () => {
     try {
       successCallback(deserialize(reader.result as string)) ;
@@ -17,12 +17,12 @@ export function importTemplates(file: File,
 }
 
 function generateExportFilename() {
-  let datePart = new Date().toISOString().replaceAll(/[-:T]|\.\d+Z$/g, '');
+  const datePart = new Date().toISOString().replaceAll(/[-:T]|\.\d+Z$/g, '');
   return `copyfu-${datePart}.json`;
 }
 
 export function exportTemplates(ftempls: FormatTemplate[] | null) {
-  let data = serialize(ftempls);
+  const data = serialize(ftempls);
   const url = URL.createObjectURL(new Blob([data]));
   const link = document.createElement('a');
   link.style.display = 'none';
