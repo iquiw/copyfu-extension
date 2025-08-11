@@ -65,6 +65,6 @@ $ bun run zip:firefox     # for Firefox
 - [ ] Liquid filter `match`
 - [x] Export
 - [x] Import
-- [ ] I18N
+- [x] I18N
 - [ ] Presets
 - [ ] Visual effect at copy
