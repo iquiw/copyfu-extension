@@ -6,10 +6,10 @@
     "message": "クリア"
   },
   "options_button_export": {
-    "message": "保存した設定をエクスポート"
+    "message": "エクスポート"
   },
   "options_button_import": {
-    "message": "ローカルJSONファイルをインポート"
+    "message": "インポート"
   },
   "options_button_save": {
     "message": "保存"
@@ -64,5 +64,17 @@
   },
   "options_title": {
     "message": "CopyFU 設定"
+  },
+  "options_tooltip_add": {
+    "message": "空のテンプレートを追加します。"
+  },
+  "options_tooltip_export": {
+    "message": "保存済のテンプレートを JSON ファイルにエクスポートします。"
+  },
+  "options_tooltip_import": {
+    "message": "ローカルの JSON ファイルからテンプレートをインポートします。"
+  },
+  "options_tooltip_save": {
+    "message": "テンプレートをストレージに保存します。空のテンプレートは削除されます。"
   }
 }

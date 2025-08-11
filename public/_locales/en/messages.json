@@ -1,15 +1,15 @@
 {
   "options_button_add": {
-    "message": "Add Template"
+    "message": "Add"
   },
   "options_button_clear": {
     "message": "Clear"
   },
   "options_button_export": {
-    "message": "Export Saved Templates"
+    "message": "Export"
   },
   "options_button_import": {
-    "message": "Import Local JSON"
+    "message": "Import"
   },
   "options_button_save": {
     "message": "Save"
@@ -64,5 +64,17 @@
   },
   "options_title": {
     "message": "CopyFU Options"
+  },
+  "options_tooltip_add": {
+    "message": "Add an empty template."
+  },
+  "options_tooltip_export": {
+    "message": "Export the saved templates to a local JSON file."
+  },
+  "options_tooltip_import": {
+    "message": "Import templates from a local JSON file."
+  },
+  "options_tooltip_save": {
+    "message": "Save templates to persistent storage. Empty templates are removed."
   }
 }
