@@ -1,20 +1,20 @@
 <script lang="ts">
   import { formatTemplate } from '../../lib/format';
 
-  let { index, error, name = $bindable(''), value = $bindable('') } = $props();
+  let { index, error, exampleUrl, exampleTitle,
+    name = $bindable(''), value = $bindable(''),
+  } = $props();
 
-  let exampleContext = {
-    url: 'https://example.com',
-    title: 'タイトル',
-  };
-
-  function format(template: string): any {
+  let exampleOutput = $derived.by(() => {
     try {
-      return formatTemplate(template, exampleContext);
+      return formatTemplate(value, {
+        url: exampleUrl,
+        title: exampleTitle,
+      });
     } catch (e) {
       return e;
     }
-  };
+  });
 
   function clear(): void {
     name = '';
@@ -48,7 +48,7 @@
 </label>
 <label class="label">
   <span class="label-text">{browser.i18n.getMessage('options_label_example_output')}</span>
-  <textarea class="textarea bg-surface-100 dark:text-surface-800" readonly tabindex="-1">{format(value)}</textarea>
+  <textarea class="textarea bg-surface-100 dark:text-surface-800" readonly tabindex="-1">{exampleOutput}</textarea>
 </label>
 <div class="grid justify-center m-2">
   <button class="btn preset-tonal interactive" onclick={clear}>{browser.i18n.getMessage('options_button_clear')}</button>

@@ -131,6 +131,9 @@
       }
     );
   }
+
+  let exampleUrl = $state('https://example.com');
+  let exampleTitle = $state(browser.i18n.getMessage('options_example_title_value'));
 </script>
 
 <svelte:window onbeforeunload={beforeUnload} />
@@ -155,6 +158,17 @@
       <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={clickImportFile}>{browser.i18n.getMessage('options_button_import')}</button>
     </div>
     <input id="import-file" class="hidden" type="file" onchange={handleImport}/>
+    <details>
+      <summary>{browser.i18n.getMessage('options_summary_example_change')}</summary>
+      <label for="example-url">
+        {browser.i18n.getMessage('options_label_example_url')}
+        <input id="example-url" class="input" bind:value={exampleUrl} />
+      </label>
+      <label for="example-title">
+        {browser.i18n.getMessage('options_label_example_title')}
+        <input id="example-title" class="input" bind:value={exampleTitle} />
+      </label>
+    </details>
     {#await storagePromise}
     <p>Loading...</p>
     {:then dummy}
@@ -186,7 +200,9 @@
             })
           ])}
           animate:flip={{ duration: flipDuration() }}>
-          <TemplateEdit index={index + 1} error={ftemplForm.error} bind:name={ftemplForm.name} bind:value={ftemplForm.template} />
+          <TemplateEdit index={index + 1} error={ftemplForm.error}
+            {exampleUrl} {exampleTitle}
+            bind:name={ftemplForm.name} bind:value={ftemplForm.template} />
         </div>
       {/each}
     </div>

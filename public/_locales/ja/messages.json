@@ -23,8 +23,11 @@
   "options_error_template_missing": {
     "message": "テンプレートを入力してください!"
   },
+  "options_example_title_value": {
+    "message": "タイトル"
+  },
   "options_help_text1": {
-    "message": "テンプレートは <a href=\"https://liquidjs.com\" class=\"anchor\">Liquid</a> でフォーマットされます。"
+    "message": "テンプレートは <a href=\"https://liquidjs.com\" class=\"anchor\">LiquidJS</a> でフォーマットされます。"
   },
   "options_help_text2": {
     "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> と <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> は現在のタブの URL とタイトルに変換されます。"
@@ -41,6 +44,12 @@
   "options_label_example_output": {
     "message": "出力例"
   },
+  "options_label_example_title": {
+    "message": "タイトルの例"
+  },
+  "options_label_example_url": {
+    "message": "URLの例"
+  },
   "options_message_imported": {
     "message": "まだ設定は保存されていません"
   },
@@ -49,6 +58,9 @@
   },
   "options_success_saved": {
     "message": "保存しました!"
+  },
+  "options_summary_example_change": {
+    "message": "出力例のURL・タイトル変更"
   },
   "options_title": {
     "message": "CopyFU 設定"
