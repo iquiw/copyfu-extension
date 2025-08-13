@@ -143,7 +143,7 @@
   <link rel="icon" type="image/svg+xml" href="{appIcon}" />
 </svelte:head>
 
-<main>
+<main class="min-w-2xl">
   <Toaster {toaster} width="min-w-sm" messageClasses="toast-message"></Toaster>
   <div class="grid m-2 space-y-2">
     <h2 class="h2">{browser.i18n.getMessage('options_title')}</h2>
@@ -194,7 +194,7 @@
     {#await storagePromise}
     <p>Loading...</p>
     {:then dummy}
-    <div class="grid grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {#each ftemplForms as ftemplForm, index (ftemplForm.id)}
         <div class="card w-full preset-outlined-primary-500 p-2"
           data-ftempl-index={index}
