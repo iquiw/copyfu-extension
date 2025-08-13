@@ -76,5 +76,14 @@
   },
   "options_tooltip_save": {
     "message": "テンプレートをストレージに保存します。空のテンプレートは削除されます。"
+  },
+  "popup_button_result_error": {
+    "message": "エラー!"
+  },
+  "popup_button_result_nolink": {
+    "message": "リンクが見つかりません"
+  },
+  "popup_button_result_success": {
+    "message": "コピーしました!"
   }
 }
