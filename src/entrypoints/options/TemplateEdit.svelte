@@ -23,7 +23,7 @@
   };
 </script>
 
-<header class="header cursor-move bg-surface-50 dark:text-gray-800 rounded-md p-2">⋮⋮ {browser.i18n.getMessage('options_label_template')} {index}</header>
+<header class="header cursor-move bg-surface-100-900 rounded-md p-2">⋮⋮ {browser.i18n.getMessage('options_label_template')} {index}</header>
 <label class="label">
   <span class="label-text">{browser.i18n.getMessage('options_label_name')}</span>
   {#if error == 'Name'}
@@ -48,7 +48,7 @@
 </label>
 <label class="label">
   <span class="label-text">{browser.i18n.getMessage('options_label_example_output')}</span>
-  <textarea class="textarea bg-surface-100 dark:text-surface-800" readonly tabindex="-1">{exampleOutput}</textarea>
+  <textarea class="textarea bg-surface-100-900" readonly tabindex="-1">{exampleOutput}</textarea>
 </label>
 <div class="grid justify-center m-2">
   <button class="btn preset-tonal interactive" onclick={clear}>{browser.i18n.getMessage('options_button_clear')}</button>

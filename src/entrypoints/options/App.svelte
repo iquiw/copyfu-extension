@@ -156,25 +156,25 @@
 
       <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
         {#snippet trigger()}
-          <button class="btn preset-filled-success-100-900 dark:preset-filled-success-900-100" disabled={!isModified} onclick={() => storagePromise = save()}>{browser.i18n.getMessage('options_button_save')}</button>
+          <button class="btn preset-filled-success-300-700 dark:text-gray-100" disabled={!isModified} onclick={() => storagePromise = save()}>{browser.i18n.getMessage('options_button_save')}</button>
         {/snippet}
         {#snippet content()}{browser.i18n.getMessage('options_tooltip_save')}{/snippet}
       </Tooltip>
       <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
         {#snippet trigger()}
-        <button class="btn preset-filled-primary-300-700 dark:preset-filled-primary-900-100" onclick={() => storagePromise = add()}>{browser.i18n.getMessage('options_button_add')}</button>
+        <button class="btn preset-filled-primary-300-700" onclick={() => storagePromise = add()}>{browser.i18n.getMessage('options_button_add')}</button>
         {/snippet}
         {#snippet content()}{browser.i18n.getMessage('options_tooltip_add')}{/snippet}
       </Tooltip>
       <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
         {#snippet trigger()}
-          <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={() => exportTemplates(ftemplsOriginal)}>{browser.i18n.getMessage('options_button_export')}</button>
+          <button class="btn preset-filled-secondary-300-700 dark:text-gray-100" onclick={() => exportTemplates(ftemplsOriginal)}>{browser.i18n.getMessage('options_button_export')}</button>
         {/snippet}
         {#snippet content()}{browser.i18n.getMessage('options_tooltip_export')}{/snippet}
       </Tooltip>
       <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
         {#snippet trigger()}
-        <button class="btn preset-filled-secondary-300-700 dark:preset-filled-secondary-900-100" onclick={clickImportFile}>{browser.i18n.getMessage('options_button_import')}</button>
+        <button class="btn preset-filled-secondary-300-700 dark:text-gray-100" onclick={clickImportFile}>{browser.i18n.getMessage('options_button_import')}</button>
         {/snippet}
         {#snippet content()}{browser.i18n.getMessage('options_tooltip_import')}{/snippet}
       </Tooltip>
