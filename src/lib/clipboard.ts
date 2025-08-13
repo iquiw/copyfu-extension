@@ -5,7 +5,7 @@ import { formatTemplate } from './format';
 export async function copyFormattedTemplate(template: string) {
   const tabs = await browser.tabs.query({
     active: true,
-    currentWindow: true,
+    lastFocusedWindow: true,
   });
   if (tabs.length > 0) {
     const tab = tabs[0];
@@ -13,7 +13,6 @@ export async function copyFormattedTemplate(template: string) {
       url: tab.url ?? '',
       title: tab.title ?? '',
     });
-    console.log(text);
     navigator.clipboard.writeText(text);
   }
 }
