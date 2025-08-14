@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Toaster, createToaster } from '@skeletonlabs/skeleton-svelte';
-  import { Tooltip } from '@skeletonlabs/skeleton-svelte';
+  import { Github } from '@lucide/svelte';
+  import { AppBar, Toaster, Tooltip, createToaster } from '@skeletonlabs/skeleton-svelte';
   import { draggable, controls, events, position, Compartment, ControlFrom } from '@neodrag/svelte';
 
   import { flip } from 'svelte/animate';
@@ -146,14 +146,21 @@
 <main class="min-w-2xl">
   <Toaster {toaster} width="min-w-sm" messageClasses="toast-message"></Toaster>
   <div class="grid m-2 space-y-2">
-    <h2 class="h2">{browser.i18n.getMessage('options_title')}</h2>
+    <AppBar padding="p-2">
+      {#snippet trail()}
+      <div class="flex space-x-2">
+        <a href={browser.runtime.getManifest().homepage_url}><Github size={24} /></a>
+        <span>Version: {browser.runtime.getManifest().version}</span>
+      </div>
+      {/snippet}
+      <h1 class="text-lg font-bold text-tertiary-600-400">{browser.i18n.getMessage('options_title')}</h1>
+    </AppBar>
     <div class="text-sm">
       <p>{@html browser.i18n.getMessage('options_help_text1')}</p>
       <p>{@html browser.i18n.getMessage('options_help_text2')}</p>
       <p>{@html browser.i18n.getMessage('options_help_text3')}</p>
     </div>
     <div class="flex space-x-2">
-
       <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
         {#snippet trigger()}
           <button class="btn preset-filled-success-300-700 dark:text-gray-100" disabled={!isModified} onclick={() => storagePromise = save()}>{browser.i18n.getMessage('options_button_save')}</button>
