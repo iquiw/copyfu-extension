@@ -135,6 +135,7 @@
 
   let exampleUrl = $state('https://example.com');
   let exampleTitle = $state(browser.i18n.getMessage('options_example_title_value'));
+  let exampleFeeds = $state(`[{ "url":"https://example.com/feed", "title": "RSS Feed" },{ "url":"https://example.com/atom", "title": "Atom Feed" }]`);
 </script>
 
 <svelte:window onbeforeunload={beforeUnload} />
@@ -197,6 +198,10 @@
         {browser.i18n.getMessage('options_label_example_title')}
         <input id="example-title" class="input" bind:value={exampleTitle} />
       </label>
+      <label for="example-feeds">
+        {browser.i18n.getMessage('options_label_example_feeds')}
+        <input id="example-feeds" class="input" bind:value={exampleFeeds} />
+      </label>
     </details>
     {#await storagePromise}
     <p>Loading...</p>
@@ -230,7 +235,7 @@
           ])}
           animate:flip={{ duration: flipDuration() }}>
           <TemplateEdit index={index + 1} error={ftemplForm.error}
-            {exampleUrl} {exampleTitle}
+            {exampleUrl} {exampleTitle} {exampleFeeds}
             bind:name={ftemplForm.name} bind:value={ftemplForm.template} />
         </div>
       {/each}

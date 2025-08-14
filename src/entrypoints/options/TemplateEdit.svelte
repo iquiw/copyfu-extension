@@ -1,15 +1,21 @@
 <script lang="ts">
   import { formatTemplate } from '../../lib/format';
 
-  let { index, error, exampleUrl, exampleTitle,
+  let { index, error, exampleUrl, exampleTitle, exampleFeeds,
     name = $bindable(''), value = $bindable(''),
   } = $props();
 
   let exampleOutput = $derived.by(() => {
+    let feeds = [];
+    try {
+      feeds = JSON.parse(exampleFeeds);
+    } catch {
+    }
     try {
       return formatTemplate(value, {
         url: exampleUrl,
         title: exampleTitle,
+        feeds,
       });
     } catch (e) {
       return e;

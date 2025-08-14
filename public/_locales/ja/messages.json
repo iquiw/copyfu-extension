@@ -30,7 +30,7 @@
     "message": "テンプレートは <a href=\"https://liquidjs.com\" class=\"anchor\">LiquidJS</a> でフォーマットされます。"
   },
   "options_help_text2": {
-    "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> と <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> は現在のタブの URL とタイトルに変換されます。"
+    "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> と <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> は現在のタブの URL とタイトルに変換されます。フィードが存在する場合、<code class=\"code\">feeds</code> という名前の <code class=\"code\">{ url: string, title: string }</code> 型のオブジェクトの配列にアサインされます。"
   },
   "options_help_text3": {
     "message": "ドラッグ＆ドロップでテンプレートの順番を変えられます。クリアして保存することでテンプレートを削除できます。"
@@ -43,6 +43,9 @@
   },
   "options_label_example_output": {
     "message": "出力例"
+  },
+  "options_label_example_feeds": {
+    "message": "フィードの例 (JSON)"
   },
   "options_label_example_title": {
     "message": "タイトルの例"

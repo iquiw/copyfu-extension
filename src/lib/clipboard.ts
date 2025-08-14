@@ -1,6 +1,7 @@
 import { browser } from 'wxt/browser';
 
-import { formatTemplate } from './format';
+import { areFeedsRequired, formatTemplate } from './format';
+import type { Feed } from './format';
 
 export enum FormatResult {
   Initial,
@@ -16,10 +17,21 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
       lastFocusedWindow: true,
     });
     if (tabs.length > 0) {
+      let feeds: Feed[] = [];
       const tab = tabs[0];
+      if (tab.id && areFeedsRequired(template)) {
+        const rsp = await browser.tabs.sendMessage(tab.id, { type: 'feed' });
+        for (const feed of rsp.feeds) {
+          feeds.push(feed);
+        }
+        if (feeds.length == 0) {
+          return FormatResult.NoLink;
+        }
+      }
       const text = formatTemplate(template, {
         url: tab.url ?? '',
         title: tab.title ?? '',
+        feeds,
       });
       navigator.clipboard.writeText(text);
 
