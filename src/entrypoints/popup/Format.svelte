@@ -66,6 +66,13 @@
       <div class="grow">{browser.i18n.getMessage('popup_button_result_success')}</div>
     </div>
   </button>
+  {:else if formatResults[index] === FormatResult.Empty}
+  <button type="button" class="btn preset-filled-warning-300-700 dark:preset-filled-warning-700-300">
+    <div class="flex w-full">
+      <div class="flex-none">{index + 1}:</div>
+      <div class="grow">{browser.i18n.getMessage('popup_button_result_empty')}</div>
+    </div>
+  </button>
   {:else if formatResults[index] === FormatResult.NoLink}
   <button type="button" class="btn preset-filled-warning-300-700 dark:preset-filled-warning-700-300">
     <div class="flex w-full">

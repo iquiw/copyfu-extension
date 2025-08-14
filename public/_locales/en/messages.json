@@ -80,6 +80,9 @@
   "options_tooltip_save": {
     "message": "Save templates to persistent storage. Empty templates are removed."
   },
+  "popup_button_result_empty": {
+    "message": "Empty Output"
+  },
   "popup_button_result_error": {
     "message": "Error!"
   },

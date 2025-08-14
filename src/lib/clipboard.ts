@@ -6,6 +6,7 @@ import type { Feed } from './format';
 export enum FormatResult {
   Initial,
   Success,
+  Empty,
   NoLink,
   Error,
 }
@@ -33,6 +34,9 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
         title: tab.title ?? '',
         feeds,
       });
+      if (text.trim().length == 0) {
+        return FormatResult.Empty;
+      }
       navigator.clipboard.writeText(text);
 
       return FormatResult.Success;

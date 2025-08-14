@@ -80,6 +80,9 @@
   "options_tooltip_save": {
     "message": "テンプレートをストレージに保存します。空のテンプレートは削除されます。"
   },
+  "popup_button_result_empty": {
+    "message": "出力が空です"
+  },
   "popup_button_result_error": {
     "message": "エラー!"
   },
