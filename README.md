@@ -119,7 +119,7 @@ Complex template to simplifying Amazon pages.
 ```mustache
 {%- assign is_amazon = url | match: "https://[^/]*amazon.(?:com|co\.[a-z]{2})/" -%}
 {%- if is_amazon -%}
-{%- assign url = url | sub: "(https://[^/]+).*(/dp/[^/?]+).*", "$1$2" -%}
+  {%- assign url = url | sub: "(https://[^/]+).*(/dp/[^/?]+).*", "$1$2" -%}
 {%- endif -%}
 {{url}}
 ```
@@ -150,15 +150,15 @@ Template to prefer Atom feed URL.
 
 ```mustache
 {%- for feed in feeds -%}
-{%- if feed.title | upcase | match: "ATOM" -%}
-{%- assign feed_url = feed.url -%}
-{%- break -%}
-{%- endif -%}
+  {%- if feed.title | upcase | match: "ATOM" -%}
+    {%- assign feed_url = feed.url -%}
+    {%- break -%}
+  {%- endif -%}
 {%- endfor -%}
 {%- if feed_url -%}
-{{ feed_url }}
+  {{ feed_url }}
 {%- else -%}
-{{ feeds | first | map: "url" }}
+  {{ feeds | first | map: "url" }}
 {%- endif -%}
 ```
 
