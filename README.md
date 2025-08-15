@@ -156,4 +156,4 @@ $ bun run zip:firefox     # for Firefox
 - [x] Import
 - [x] I18N
 - [ ] Presets
-- [ ] Visual effect at copy
+- [x] Visual effect at copy
