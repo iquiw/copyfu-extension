@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   srcDir: 'src',
   manifest: {
-    permissions: ['clipboardWrite', 'storage', 'tabs'],
+    permissions: ['activeTab', 'clipboardWrite', 'storage', 'tabs'],
     commands: {
       "_execute_action": {
         "suggested_key": {
