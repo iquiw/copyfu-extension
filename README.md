@@ -14,8 +14,9 @@ URL and title can be formatted using user-defined [LiquidJS](https://liquidjs.co
 
 ## Feature
 
-- Copy URL and title with customizable templates
-- User-defined Liquid templates for advanced formatting
+- Copy URL and title of the current tab with customizable templates
+- Copy URL and title of RSS/Atom feeds
+- User-defined LiquidJS templates for advanced formatting
 - Keyboard shortcuts for quick access
 - Export/import templates for backup and sharing
 - Drag-and-drop sorting for template management
@@ -38,6 +39,16 @@ Then clicking one of the template buttons copied formatted URL and title to clip
 
 By clicking Options icon on CopyFU popup, options tab is shown.  
 Then you can defined custom templates in [LiquidJS](https://liquidjs.com).
+
+#### Variables
+
+The following variables are defined when formatting templates.
+
+| Variable | Type                                           | Description                   |
+| ---      | ---                                            | ---                           |
+| `url`    | string                                         | URL of the current tab.       |
+| `title`  | string                                         | Title of the current tab.     |
+| `feeds`  | array of type `{ url: string, title: string }` | Feeds URL/Title if available. |
 
 #### Filters
 
@@ -93,11 +104,15 @@ true
 
 #### Templates
 
+##### Simple example
+
 Simple template for Markdown.
 
 ```mustache
 [{{title}}]({{url}})
 ```
+
+##### Complex example
 
 Complex template to simplifying Amazon pages.
 
@@ -122,6 +137,30 @@ https://www.amazon.co.jp/dp/B0DM5BJFLR
 ```
 
 and other URL is unchanged.
+
+##### Feeds example
+
+Template for the first feed URL.
+
+```mustache
+{{ feeds | first | map: "url" }}
+```
+
+Template to prefer Atom feed URL.
+
+```mustache
+{%- for feed in feeds -%}
+{%- if feed.title | upcase | match: "ATOM" -%}
+{%- assign feed_url = feed.url -%}
+{%- break -%}
+{%- endif -%}
+{%- endfor -%}
+{%- if feed_url -%}
+{{ feed_url }}
+{%- else -%}
+{{ feeds | first | map: "url" }}
+{%- endif -%}
+```
 
 ## Development
 
@@ -157,3 +196,4 @@ $ bun run zip:firefox     # for Firefox
 - [x] I18N
 - [ ] Presets
 - [x] Visual effect at copy
+- [x] RSS/Atom feeds
