@@ -104,23 +104,20 @@ true
 
 #### Templates
 
-##### Simple example
+##### Example: Simple Markdown
 
-Simple template for Markdown.
+Simple template for Markdown link.
 
 ```mustache
 [{{title}}]({{url}})
 ```
 
-##### Complex example
+##### Example: Amazon
 
-Complex template to simplifying Amazon pages.
+Template to simplify Amazon pages and output Markdown link.
 
 ```mustache
-{%- assign is_amazon = url | match: "https://[^/]*amazon.(?:com|co\.[a-z]{2})/" -%}
-{%- if is_amazon -%}
-  {%- assign url = url | sub: "(https://[^/]+).*(/dp/[^/?]+).*", "$1$2" -%}
-{%- endif -%}
+{%- assign url = url | sub: "(https://[^/]*amazon.(?:com|co\.[a-z]{2}))/.*(/dp/[^/?]+).*", "$1$2" -%}
 {{url}}
 ```
 
@@ -136,7 +133,32 @@ into
 https://www.amazon.co.jp/dp/B0DM5BJFLR
 ```
 
-and other URL is unchanged.
+and other URLs are unchanged.
+
+##### Example: Box
+
+Template to convert Box URL to shared one and output Markdown link.
+
+```mustache
+{%- assign is_box = url | match: "https://app.box.com/.*\\?s=.*" -%}
+{%- if is_box -%}
+[{{title}}]({{ url | sub: "https://.*\\?s=(.*)", "$1" | prepend: "https://<Custom Subdomain>.box.com/s/" }})
+{%- endif -%}
+```
+
+It translates the following URL
+
+```
+https://app.box.com/folder/nnnnnnnnnnnn?s=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+into
+
+```
+https://<Custom Subdomain>.box.com/s/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+and no output is produced for other URLs.
 
 ##### Feeds example
 
