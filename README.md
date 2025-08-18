@@ -171,14 +171,9 @@ Template for the first feed URL.
 Template to prefer Atom feed URL.
 
 ```mustache
-{%- for feed in feeds -%}
-  {%- if feed.title | upcase | match: "ATOM" -%}
-    {%- assign feed_url = feed.url -%}
-    {%- break -%}
-  {%- endif -%}
-{%- endfor -%}
-{%- if feed_url -%}
-  {{ feed_url }}
+{%- assign feed = feeds | find_exp: "item", "item.type == 'atom'" -%}
+{%- if feed -%}
+  {{ feed.url }}
 {%- else -%}
   {{ feeds | first | map: "url" }}
 {%- endif -%}
