@@ -15,6 +15,7 @@ export default defineContentScript({
         feeds.push({
           url: elem.href,
           title: elem.title,
+          type: elem.type === 'application/rss+xml' ? 'rss' : 'atom',
         });
       }
       sendMessage({ feeds });

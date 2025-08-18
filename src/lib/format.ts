@@ -5,6 +5,7 @@ const engine = new Liquid();
 export interface Feed {
   url: string,
   title: string,
+  type: 'rss' | 'atom',
 }
 
 export interface FormatContext {

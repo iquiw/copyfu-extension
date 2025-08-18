@@ -1,17 +1,20 @@
 import { describe, it, expect } from 'vitest';
 
 import { formatTemplate } from '../format';
+import type { FormatContext } from '../format';
 
-const CONTEXT1 = {
+const CONTEXT1: FormatContext = {
   url: 'https://example.com',
   title: 'TITLE',
-  feeds: [{ url: "https://example.com/feed", title: "RSS Feed" }],
+  feeds: [{ url: 'https://example.com/feed', title: 'RSS Feed', type: 'rss' }],
 }
 
-const CONTEXT2 = {
+const CONTEXT2: FormatContext = {
   url: 'https://github.com/sveltejs/svelte/',
   title: 'GitHub - sveltejs/svelte: web development for the rest of us',
-  feeds: [{ url: "https://example.com/feed", title: "RSS Feed" }, { url: "https://example.com/atom", title: "Atom Feed" }],
+  feeds: [
+    { url: 'https://example.com/feed', title: 'RSS Feed', type: 'rss' },
+    { url: 'https://example.com/atom', title: 'Atom Feed', type: 'atom' }],
 }
 
 const CONTEXT3 = {
@@ -61,10 +64,15 @@ describe('formatTemplate', () => {
     expect(s).toBe('https://example.com/feed');
   });
 
-  it('should format with Atom feed', async () => {
+  it('should format with filtering by title', async () => {
     const s = formatTemplate(`
 {%- assign feed = feeds | find_exp: "item", "item.title contains 'Atom'" -%}
 {{ feed.url }}`, CONTEXT2);
+    expect(s).toBe('https://example.com/atom');
+  });
+
+  it('should format with filtering by type', async () => {
+    const s = formatTemplate(`{{ feeds | find_exp: "item", "item.type == 'atom'" | map: "url" }}` , CONTEXT2);
     expect(s).toBe('https://example.com/atom');
   });
 });

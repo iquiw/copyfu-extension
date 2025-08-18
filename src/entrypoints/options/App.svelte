@@ -135,7 +135,7 @@
 
   let exampleUrl = $state('https://example.com');
   let exampleTitle = $state(browser.i18n.getMessage('options_example_title_value'));
-  let exampleFeeds = $state(`[{ "url":"https://example.com/feed", "title": "RSS Feed" },{ "url":"https://example.com/atom", "title": "Atom Feed" }]`);
+  let exampleFeeds = $state(`[{ "url":"https://example.com/feed", "title": "RSS Feed", "type": "rss" },{ "url":"https://example.com/atom", "title": "Atom Feed", "type": "atom" }]`);
 </script>
 
 <svelte:window onbeforeunload={beforeUnload} />
