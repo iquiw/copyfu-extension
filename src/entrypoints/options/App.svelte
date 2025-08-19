@@ -150,7 +150,7 @@
     <AppBar padding="p-2">
       {#snippet trail()}
       <div class="flex space-x-2">
-        <a href={browser.runtime.getManifest().homepage_url}><Github size={24} /></a>
+        <a href={browser.runtime.getManifest().homepage_url} target="_blank"><Github size={24} /></a>
         <span>Version: {browser.runtime.getManifest().version}</span>
       </div>
       {/snippet}
