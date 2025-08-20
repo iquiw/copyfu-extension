@@ -4,7 +4,7 @@ export default defineContentScript({
   matches: ['*://*/*'],
   main() {
     browser.runtime.onMessage.addListener((request, sender, sendMessage) => {
-      if (request.type !== 'feed') {
+      if (request.action !== 'query-feed') {
         return;
       }
       const links = document.querySelectorAll(FEED_SELECTOR);

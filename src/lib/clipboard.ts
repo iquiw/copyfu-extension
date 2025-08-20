@@ -21,7 +21,7 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
       let feeds: Feed[] = [];
       const tab = tabs[0];
       if (tab.id && areFeedsRequired(template)) {
-        const rsp = await browser.tabs.sendMessage(tab.id, { type: 'feed' });
+        const rsp = await browser.tabs.sendMessage(tab.id, { action: 'query-feed' });
         for (const feed of rsp.feeds) {
           feeds.push(feed);
         }
