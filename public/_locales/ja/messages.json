@@ -91,5 +91,14 @@
   },
   "popup_button_result_success": {
     "message": "コピーしました!"
+  },
+  "shortcut_copy_template_1": {
+    "message": "テンプレート1でコピー"
+  },
+  "shortcut_copy_template_2": {
+    "message": "テンプレート2でコピー"
+  },
+  "shortcut_copy_template_3": {
+    "message": "テンプレート3でコピー"
   }
 }

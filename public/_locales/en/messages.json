@@ -91,5 +91,14 @@
   },
   "popup_button_result_success": {
     "message": "Copied!"
+  },
+  "shortcut_copy_template_1": {
+    "message": "Copy with template 1"
+  },
+  "shortcut_copy_template_2": {
+    "message": "Copy with template 2"
+  },
+  "shortcut_copy_template_3": {
+    "message": "Copy with template 3"
   }
 }

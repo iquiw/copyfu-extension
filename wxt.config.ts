@@ -13,13 +13,13 @@ export default defineConfig({
         },
       },
       "copy-template-1": {
-        "description": "Copy with template 1",
+        "description": "__MSG_shortcut_copy_template_1__",
       },
       "copy-template-2": {
-        "description": "Copy with template 2",
+        "description": "__MSG_shortcut_copy_template_2__",
       },
       "copy-template-3": {
-        "description": "Copy with template 3",
+        "description": "__MSG_shortcut_copy_template_3__",
       },
     },
     browser_specific_settings: {
