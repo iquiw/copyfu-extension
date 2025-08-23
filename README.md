@@ -118,7 +118,7 @@ Template to simplify Amazon pages and output Markdown link.
 
 ```mustache
 {%- assign url = url | sub: "(https://[^/]*amazon.(?:com|co\.[a-z]{2}))/.*(/dp/[^/?]+).*", "$1$2" -%}
-{{url}}
+[{{title}}]({{url}})
 ```
 
 It translates the following URL
