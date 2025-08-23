@@ -41,6 +41,18 @@
       }
     }
   }
+
+  browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action == 'copy-template') {
+      const button = document.getElementById(`copy-button-${request.index - 1}`);
+      if (button != null) {
+        button.click();
+        sendResponse({ success: true });
+        return;
+      }
+    }
+    sendResponse({ success: false });
+  });
 </script>
 
 {#await loadTemplates().then((fs) => {

@@ -12,6 +12,15 @@ export default defineConfig({
           "default": "Ctrl+Shift+U",
         },
       },
+      "copy-template-1": {
+        "description": "Copy with template 1",
+      },
+      "copy-template-2": {
+        "description": "Copy with template 2",
+      },
+      "copy-template-3": {
+        "description": "Copy with template 3",
+      },
     },
     browser_specific_settings: {
       gecko: {
