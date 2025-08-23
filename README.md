@@ -30,9 +30,19 @@ Then clicking one of the template buttons copied formatted URL and title to clip
 
 #### Available keyboard shortcuts
 
+##### Global keyboard shortcuts
+
+| Shortcut                | Action               |
+| ---                     | ---                  |
+| <kbd>Ctrl+Shift+U</kbd> | Open CopyFU popup    |
+| _Unassigned_            | Copy with template 1 |
+| _Unassigned_            | Copy with template 2 |
+| _Unassigned_            | Copy with template 3 |
+
+##### Shortcuts on Popup
+
 | Shortcut                    | Action                                                      |
 | ---                         | ---                                                         |
-| <kbd>Ctrl+Shift+U</kbd>     | Open CopyFU popup                                           |
 | <kbd>1</kbd> ~ <kbd>9</kbd> | Copy formatted URL and title with template indexed by 1 ~ 9 |
 
 ### Options
@@ -44,11 +54,11 @@ Then you can defined custom templates in [LiquidJS](https://liquidjs.com).
 
 The following variables are defined when formatting templates.
 
-| Variable | Type                                           | Description                   |
-| ---      | ---                                            | ---                           |
-| `url`    | string                                         | URL of the current tab.       |
-| `title`  | string                                         | Title of the current tab.     |
-| `feeds`  | array of type `{ url: string, title: string }` | Feeds URL/Title if available. |
+| Variable | Type                                                         | Description                                                        |
+| ---      | ---                                                          | ---                                                                |
+| `url`    | string                                                       | URL of the current tab.                                            |
+| `title`  | string                                                       | Title of the current tab.                                          |
+| `feeds`  | array of type `{ url: string, title: string, type: string }` | Feeds URL/Title if available.<br>`type` is either `rss` or `atom`. |
 
 #### Filters
 
@@ -203,7 +213,7 @@ $ bun run zip:firefox     # for Firefox
 - [x] Save format templates
 - [x] Sort format templates by DnD
 - [x] Shortcut for popup
-- [ ] Shortcuts for copy
+- [x] Shortcuts for copy
 - [x] App icon
 - [x] Icon font
 - [x] Liquid filter `sub`, `gsub`
