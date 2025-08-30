@@ -221,6 +221,6 @@ $ bun run zip:firefox     # for Firefox
 - [x] Export
 - [x] Import
 - [x] I18N
-- [ ] Presets
+- [x] Preset
 - [x] Visual effect at copy
 - [x] RSS/Atom feeds
