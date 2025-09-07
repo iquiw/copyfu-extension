@@ -1,12 +1,12 @@
 import { loadTemplates, saveTemplates } from "@/lib/storage";
+import { COMMAND_MESSAGE_COPY_TEMPLATE, findTemplateIndex } from '@/lib/command';
 
 function sendCopyMessage(index: number) {
   setTimeout(() => {
-    browser.runtime.sendMessage({ action: 'copy-template', index });
+    browser.runtime.sendMessage({ action: COMMAND_MESSAGE_COPY_TEMPLATE, index });
   }, 300);
 }
 
-const CommandRegexp = new RegExp('copy-template-(\\d+)');
 
 const TemplatesPreset = [
   { name: 'Markdown', template: '[{{title}}]({{url}})' },
@@ -17,9 +17,8 @@ const TemplatesPreset = [
 
 export default defineBackground(() => {
   browser.commands.onCommand.addListener((command) => {
-    const match = CommandRegexp.exec(command);
-    if (match) {
-      const index = parseInt(match[1], 10);
+    const index = findTemplateIndex(command);
+    if (index != null) {
       (browser.action ?? browser.browserAction).openPopup().then(() => {
         sendCopyMessage(index);
       }).catch((e) => {

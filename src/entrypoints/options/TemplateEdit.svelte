@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { formatTemplate } from '../../lib/format';
+  import { formatTemplate } from '@/lib/format';
 
   let { index, error, exampleUrl, exampleTitle, exampleFeeds,
     name = $bindable(''), value = $bindable(''),

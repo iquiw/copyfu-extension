@@ -2,6 +2,7 @@ import { browser } from 'wxt/browser';
 
 import { areFeedsRequired, formatTemplate } from './format';
 import type { Feed } from './format';
+import { COMMAND_MESSAGE_QUERY_FEED } from './command';
 
 export enum FormatResult {
   Initial,
@@ -21,7 +22,7 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
       let feeds: Feed[] = [];
       const tab = tabs[0];
       if (tab.id && areFeedsRequired(template)) {
-        const rsp = await browser.tabs.sendMessage(tab.id, { action: 'query-feed' });
+        const rsp = await browser.tabs.sendMessage(tab.id, { action: COMMAND_MESSAGE_QUERY_FEED });
         for (const feed of rsp.feeds) {
           feeds.push(feed);
         }

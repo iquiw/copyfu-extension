@@ -1,5 +1,5 @@
-import { deserialize, serialize } from '../../lib/storage';
-import type { FormatTemplate } from '../../lib/storage';
+import { deserialize, serialize } from '@/lib/storage';
+import type { FormatTemplate } from '@/lib/storage';
 
 export function importTemplates(file: File,
   successCallback: (x: FormatTemplate[]) => void,

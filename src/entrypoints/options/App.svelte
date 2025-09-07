@@ -6,8 +6,8 @@
   import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
 
-  import { loadTemplates, saveTemplates, serialize } from '../../lib/storage';
-  import type { FormatTemplate } from '../../lib/storage';
+  import { loadTemplates, saveTemplates, serialize } from '@/lib/storage';
+  import type { FormatTemplate } from '@/lib/storage';
 
   import { importTemplates, exportTemplates } from './imex';
 
@@ -16,7 +16,7 @@
 
   import TemplateEdit from './TemplateEdit.svelte';
   import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
-  import appIcon from '../../assets/copyfu.svg';
+  import appIcon from '@/assets/copyfu.svg';
 
   const toaster = createToaster({
     placement: 'top-end'

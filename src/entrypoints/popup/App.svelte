@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Settings } from '@lucide/svelte';
-  import appIcon from '../../assets/copyfu.svg';
+  import appIcon from '@/assets/copyfu.svg';
 
   import Format from './Format.svelte';
 </script>

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { copyFormattedTemplate, FormatResult } from '../../lib/clipboard';
-  import { loadTemplates } from '../../lib/storage';
-  import type { FormatTemplate } from '../../lib/storage';
+  import { copyFormattedTemplate, FormatResult } from '@/lib/clipboard';
+  import { loadTemplates } from '@/lib/storage';
+  import type { FormatTemplate } from '@/lib/storage';
+  import { COMMAND_MESSAGE_COPY_TEMPLATE } from '@/lib/command';
 
   const VISUAL_EFFECT_DURATION = 500;
   let formatsCache: FormatTemplate[] | null = null;
@@ -43,7 +44,7 @@
   }
 
   browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action == 'copy-template') {
+    if (request.action == COMMAND_MESSAGE_COPY_TEMPLATE) {
       const button = document.getElementById(`copy-button-${request.index - 1}`);
       if (button != null) {
         button.click();
