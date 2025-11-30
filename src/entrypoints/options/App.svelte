@@ -12,7 +12,7 @@
   import { importTemplates, exportTemplates } from './imex';
 
   import { validate } from './validate';
-  import type { FormatTemplateForm, FormatTemplateFormResult } from './validate';
+  import type { FormatTemplateForm } from './validate';
 
   import TemplateEdit from './TemplateEdit.svelte';
   import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';

@@ -3,9 +3,9 @@
 // The warning is not shown if duration is null in the anmiate:flip parameter.
 import { unstable_definePlugin } from '@neodrag/core/plugins';
 
-let flipDurationStore: number | undefined = undefined;
+let flipDurationStore: number = 0;
 
-export function flipDuration(): number | undefined {
+export function flipDuration(): number {
   return flipDurationStore;
 }
 
@@ -15,6 +15,6 @@ export const flipWorkaroundPlugin = unstable_definePlugin(() => ({
     flipDurationStore = 200;
   },
   cleanup(ctx, state) {
-    flipDurationStore = undefined;
+    flipDurationStore = 0;
   },
 }));
