@@ -2,17 +2,17 @@
   "name": "copyfu",
   "version": "0.8.0",
   "devDependencies": {
-    "@skeletonlabs/skeleton": "^3.2.0",
-    "@skeletonlabs/skeleton-svelte": "^1.5.1",
-    "@tsconfig/svelte": "^5.0.5",
+    "@skeletonlabs/skeleton": "^3.2.2",
+    "@skeletonlabs/skeleton-svelte": "^1.5.3",
+    "@tsconfig/svelte": "^5.0.6",
     "@wxt-dev/auto-icons": "^1.1.0",
-    "@wxt-dev/module-svelte": "^2.0.3",
-    "svelte": "^5.38.6",
-    "svelte-check": "^4.3.1",
+    "@wxt-dev/module-svelte": "^2.0.4",
+    "svelte": "^5.43.14",
+    "svelte-check": "^4.3.4",
     "tslib": "^2.8.1",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4",
-    "wxt": "^0.20.8"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.13",
+    "wxt": "^0.20.11"
   },
   "description": "Copy Formatted URL and title",
   "private": true,
@@ -29,10 +29,10 @@
   },
   "type": "module",
   "dependencies": {
-    "@lucide/svelte": "^0.542.0",
+    "@lucide/svelte": "^0.554.0",
     "@neodrag/svelte": "^3.0.0-next.8",
-    "@tailwindcss/vite": "^4.1.12",
-    "liquidjs": "^10.21.1",
-    "tailwindcss": "^4.1.12"
+    "@tailwindcss/vite": "^4.1.17",
+    "liquidjs": "^10.24.0",
+    "tailwindcss": "^4.1.17"
   }
 }
