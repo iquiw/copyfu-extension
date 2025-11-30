@@ -42,3 +42,8 @@ export function areFeedsRequired(template: string): boolean {
   const vars = engine.globalVariablesSync(template);
   return vars.includes('feeds');
 }
+
+export function isMenuItemEnabled(template: string): boolean {
+  const vars = engine.globalVariablesSync(template);
+  return vars.includes('url') || vars.includes('title');
+}

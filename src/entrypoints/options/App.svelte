@@ -4,8 +4,8 @@
   import { draggable, controls, events, position, Compartment, ControlFrom } from '@neodrag/svelte';
 
   import { flip } from 'svelte/animate';
-  import { fade } from 'svelte/transition';
 
+  import { COMMAND_P2B_REFRESH_MENU } from '@/lib/command';
   import { loadTemplates, saveTemplates, serialize } from '@/lib/storage';
   import type { FormatTemplate } from '@/lib/storage';
 
@@ -49,7 +49,12 @@
     const result = validate(ftemplForms);
     ftemplForms = result.ftemplForms;
     if (!result.hasError) {
-      ftemplsOriginal = await saveTemplates(ftemplForms);
+      const ftempls = await saveTemplates(ftemplForms);
+      await browser.runtime.sendMessage({
+        action: COMMAND_P2B_REFRESH_MENU,
+        ftempls: ftempls,
+      });
+      ftemplsOriginal = ftempls;
       toaster.success({
         title: browser.i18n.getMessage('options_success_saved'),
       });

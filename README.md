@@ -20,6 +20,7 @@ URL and title can be formatted using user-defined [LiquidJS](https://liquidjs.co
 - Keyboard shortcuts for quick access
 - Export/import templates for backup and sharing
 - Drag-and-drop sorting for template management
+- Context menu support
 
 ## Usage
 

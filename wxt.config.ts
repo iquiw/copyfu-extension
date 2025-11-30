@@ -1,25 +1,25 @@
 import { defineConfig } from 'wxt';
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   srcDir: 'src',
   manifest: {
-    permissions: ['activeTab', 'clipboardWrite', 'storage', 'tabs'],
+    permissions: ['activeTab', 'clipboardWrite', 'contextMenus', 'storage', 'tabs'],
     commands: {
-      "_execute_action": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+U",
+      '_execute_action': {
+        'suggested_key': {
+          'default': 'Ctrl+Shift+U',
         },
       },
-      "copy-template-1": {
-        "description": "__MSG_shortcut_copy_template_1__",
+      'copy-template-1': {
+        'description': '__MSG_shortcut_copy_template_1__',
       },
-      "copy-template-2": {
-        "description": "__MSG_shortcut_copy_template_2__",
+      'copy-template-2': {
+        'description': '__MSG_shortcut_copy_template_2__',
       },
-      "copy-template-3": {
-        "description": "__MSG_shortcut_copy_template_3__",
+      'copy-template-3': {
+        'description': '__MSG_shortcut_copy_template_3__',
       },
     },
     browser_specific_settings: {
