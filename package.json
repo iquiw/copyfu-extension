@@ -11,8 +11,8 @@
     "svelte-check": "^4.3.4",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.13",
-    "wxt": "^0.20.11"
+    "vitest": "^4.0.16",
+    "wxt": "^0.20.13"
   },
   "description": "Copy Formatted URL and title",
   "private": true,
