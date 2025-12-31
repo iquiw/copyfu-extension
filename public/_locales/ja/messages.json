@@ -27,7 +27,7 @@
     "message": "タイトル"
   },
   "options_help_text1": {
-    "message": "テンプレートは <a href=\"https://liquidjs.com\" class=\"anchor\">LiquidJS</a> でフォーマットされます。"
+    "message": "テンプレートは <a href=\"https://liquidjs.com\" target=\"_blank\" class=\"anchor\">LiquidJS</a> でフォーマットされます。"
   },
   "options_help_text2": {
     "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> と <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> は現在のタブの URL とタイトルに変換されます。<br>フィードが存在する場合、<code class=\"code\">feeds</code> という名前の <code class=\"code\">{ url: string, title: string, type: string }</code> 型のオブジェクトの配列にアサインされます。"

@@ -27,7 +27,7 @@
     "message": "TITLE"
   },
   "options_help_text1": {
-    "message": "Templates are formatted by <a href=\"https://liquidjs.com\" class=\"anchor\">LiquidJS</a> template."
+    "message": "Templates are formatted by <a href=\"https://liquidjs.com\" target=\"_blank\" class=\"anchor\">LiquidJS</a> template."
   },
   "options_help_text2": {
     "message": "<code class=\"code\">&lbrace;&lbrace;url&rbrace;&rbrace;</code> and <code class=\"code\">&lbrace;&lbrace;title&rbrace;&rbrace;</code> are replaced by actual URL and title of the current page.<br>If feed links are available, they are assigned to <code class=\"code\">feeds</code>, which is an array of objects of type <code class=\"code\">{ url: string, title: string, type: string }</code>."
