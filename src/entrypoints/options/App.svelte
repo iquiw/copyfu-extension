@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Github } from '@lucide/svelte';
-  import { AppBar, Toaster, Tooltip, createToaster } from '@skeletonlabs/skeleton-svelte';
+  import { AppBar, Toast, createToaster } from '@skeletonlabs/skeleton-svelte';
   import { draggable, controls, events, position, Compartment, ControlFrom } from '@neodrag/svelte';
 
   import { flip } from 'svelte/animate';
@@ -15,6 +15,7 @@
   import type { FormatTemplateForm } from './validate';
 
   import TemplateEdit from './TemplateEdit.svelte';
+  import TTButton from './TTButton.svelte';
   import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
   import appIcon from '@/assets/copyfu.svg';
 
@@ -150,16 +151,29 @@
 </svelte:head>
 
 <main class="min-w-2xl">
-  <Toaster {toaster} width="min-w-sm" messageClasses="toast-message"></Toaster>
+  <Toast.Group {toaster}>
+    {#snippet children(toast)}
+      <Toast toast={toast}>
+	<Toast.Message>
+	  <Toast.Title>{toast.title}</Toast.Title>
+	  <Toast.Description>{toast.description}</Toast.Description>
+	</Toast.Message>
+	<Toast.CloseTrigger />
+      </Toast>
+    {/snippet}
+  </Toast.Group>
   <div class="grid m-2 space-y-2">
-    <AppBar padding="p-2">
-      {#snippet trail()}
-      <div class="flex space-x-2">
-        <a href={browser.runtime.getManifest().homepage_url} target="_blank"><Github size={24} /></a>
-        <span>Version: {browser.runtime.getManifest().version}</span>
-      </div>
-      {/snippet}
-      <h1 class="text-lg font-bold text-tertiary-600-400">{browser.i18n.getMessage('options_title')}</h1>
+    <AppBar class="p-2">
+      <AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
+        <AppBar.Lead class="pl-25" />
+        <AppBar.Headline class="flex justify-center">
+          <h1 class="text-lg font-bold text-tertiary-600-400">{browser.i18n.getMessage('options_title')}</h1>
+        </AppBar.Headline>
+        <AppBar.Trail class="flex gap-2">
+          <a href={browser.runtime.getManifest().homepage_url} target="_blank" class="hover:preset-tonal"><Github size={24} /></a>
+          <div>Version: {browser.runtime.getManifest().version}</div>
+        </AppBar.Trail>
+      </AppBar.Toolbar>
     </AppBar>
     <div class="text-sm">
       <p>{@html browser.i18n.getMessage('options_help_text1')}</p>
@@ -167,30 +181,31 @@
       <p>{@html browser.i18n.getMessage('options_help_text3')}</p>
     </div>
     <div class="flex space-x-2">
-      <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
-        {#snippet trigger()}
-          <button class="btn preset-filled-success-300-700 dark:text-gray-100" disabled={!isModified} onclick={() => storagePromise = save()}>{browser.i18n.getMessage('options_button_save')}</button>
-        {/snippet}
-        {#snippet content()}{browser.i18n.getMessage('options_tooltip_save')}{/snippet}
-      </Tooltip>
-      <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
-        {#snippet trigger()}
-        <button class="btn preset-filled-primary-300-700" onclick={() => storagePromise = add()}>{browser.i18n.getMessage('options_button_add')}</button>
-        {/snippet}
-        {#snippet content()}{browser.i18n.getMessage('options_tooltip_add')}{/snippet}
-      </Tooltip>
-      <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
-        {#snippet trigger()}
-          <button class="btn preset-filled-secondary-300-700 dark:text-gray-100" onclick={() => exportTemplates(ftemplsOriginal)}>{browser.i18n.getMessage('options_button_export')}</button>
-        {/snippet}
-        {#snippet content()}{browser.i18n.getMessage('options_tooltip_export')}{/snippet}
-      </Tooltip>
-      <Tooltip positioning={{ placement: 'top' }} contentBase="card preset-filled p-4" openDelay={500} arrow>
-        {#snippet trigger()}
-        <button class="btn preset-filled-secondary-300-700 dark:text-gray-100" onclick={clickImportFile}>{browser.i18n.getMessage('options_button_import')}</button>
-        {/snippet}
-        {#snippet content()}{browser.i18n.getMessage('options_tooltip_import')}{/snippet}
-      </Tooltip>
+      <TTButton
+        buttonClass="btn preset-filled-success-300-700 dark:text-gray-100"
+        buttonTitle={browser.i18n.getMessage('options_button_save')}
+        tooltip={browser.i18n.getMessage('options_tooltip_save')}
+        callback={() => storagePromise = save()}
+        disabled={!isModified}
+      />
+      <TTButton
+        buttonClass="btn preset-filled-primary-300-700"
+        buttonTitle={browser.i18n.getMessage('options_button_add')}
+        tooltip={browser.i18n.getMessage('options_tooltip_add')}
+        callback={() => storagePromise = add()}
+      />
+      <TTButton
+        buttonClass="btn preset-filled-secondary-300-700 dark:text-gray-100"
+        buttonTitle={browser.i18n.getMessage('options_button_export')}
+        tooltip={browser.i18n.getMessage('options_tooltip_export')}
+        callback={() => exportTemplates(ftemplsOriginal)}
+      />
+      <TTButton
+        buttonClass="btn preset-filled-secondary-300-700 dark:text-gray-100"
+        buttonTitle={browser.i18n.getMessage('options_button_import')}
+        tooltip={browser.i18n.getMessage('options_tooltip_import')}
+        callback={clickImportFile}
+      />
     </div>
     <input id="import-file" class="hidden" type="file" onchange={handleImport}/>
     <details>
