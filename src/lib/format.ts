@@ -29,6 +29,22 @@ engine.registerFilter('match', (v, regexStr) => {
   return regex.test(v);
 });
 
+engine.registerFilter('url_parse', (v) => {
+  const url = new URL(v);
+  return {
+    hash: url.hash,
+    host: url.host,
+    hostname: url.hostname,
+    origin: url.origin,
+    password: url.password,
+    pathname: url.pathname,
+    port: url.port,
+    protocol: url.protocol,
+    search: url.search,
+    username: url.username,
+  };
+});
+
 export function formatTemplate(template: string, context: FormatContext): string {
   const text = engine.parseAndRenderSync(template, {
     url: context.url,

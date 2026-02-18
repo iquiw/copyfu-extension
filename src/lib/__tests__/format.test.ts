@@ -23,6 +23,12 @@ const CONTEXT3 = {
   feeds: [],
 }
 
+const CONTEXT4 = {
+  url: 'https://user01:passwd01@example.com:8080/path?search1=value1&search2=value2#hash',
+  title: 'TITLE',
+  feeds: [],
+}
+
 describe('formatTemplate', () => {
   it('should format bare text', async () => {
     const s = formatTemplate('Hello, world', CONTEXT1);
@@ -74,6 +80,29 @@ describe('formatTemplate', () => {
   it('should format with filtering by type', async () => {
     const s = formatTemplate(`{{ feeds | find_exp: "item", "item.type == 'atom'" | map: "url" }}` , CONTEXT2);
     expect(s).toBe('https://example.com/atom');
+  });
+
+  it('should format with parsing URL into components', async () => {
+    const hash = formatTemplate('{{url | url_parse | map: "hash"}}', CONTEXT4);
+    expect(hash).toBe('#hash');
+    const host = formatTemplate('{{url | url_parse | map: "host"}}', CONTEXT4);
+    expect(host).toBe('example.com:8080');
+    const hostname = formatTemplate('{{url | url_parse | map: "hostname"}}', CONTEXT4);
+    expect(hostname).toBe('example.com');
+    const origin = formatTemplate('{{url | url_parse | map: "origin"}}', CONTEXT4);
+    expect(origin).toBe('https://example.com:8080');
+    const password = formatTemplate('{{url | url_parse | map: "password"}}', CONTEXT4);
+    expect(password).toBe('passwd01');
+    const pathname = formatTemplate('{{url | url_parse | map: "pathname"}}', CONTEXT4);
+    expect(pathname).toBe('/path');
+    const port = formatTemplate('{{url | url_parse | map: "port"}}', CONTEXT4);
+    expect(port).toBe('8080');
+    const protocol = formatTemplate('{{url | url_parse | map: "protocol"}}', CONTEXT4);
+    expect(protocol).toBe('https:');
+    const search = formatTemplate('{{url | url_parse | map: "search"}}', CONTEXT4);
+    expect(search).toBe('?search1=value1&search2=value2');
+    const username = formatTemplate('{{url | url_parse | map: "username"}}', CONTEXT4);
+    expect(username).toBe('user01');
   });
 });
 
