@@ -63,13 +63,14 @@ The following variables are defined when formatting templates.
 
 #### Filters
 
-In addition to LiquidJS bultin filters, the following 3 filters can be used.
+In addition to LiquidJS bultin filters, the following 4 filters can be used.
 
-| Filter  | Arguments                         | Return value type | Description                                                          |
-| ---     | ---                               | ---               | ---                                                                  |
-| `sub`   | regexp string, replacement string | string            | substitute a text that matches the regexp with the replacement       |
-| `gsub`  | regexp string, replacement string | string            | globally substitute texts that match the regexp with the replacement |
-| `match` | regexp string                     | boolean           | judge whether there is any text that matches the regexp              |
+| Filter      | Arguments                         | Return value type | Description                                                                                                                                       |
+| ---         | ---                               | ---               | ---                                                                                                                                               |
+| `sub`       | regexp string, replacement string | string            | substitute a text that matches the regexp with the replacement                                                                                    |
+| `gsub`      | regexp string, replacement string | string            | globally substitute texts that match the regexp with the replacement                                                                              |
+| `match`     | regexp string                     | boolean           | judge whether there is any text that matches the regexp                                                                                           |
+| `url_parse` | _N/A_                             | object            | parse URL into object that has properties, `hash`, `host`, `hostname`, `origin`, `password`, `pathname`, `port`, `protocol`, `search`, `username` |
 
 ##### `sub`
 
@@ -111,6 +112,20 @@ Output
 
 ```
 true
+```
+
+##### `url_parse`
+
+Input
+
+```mustache
+{{ "https://example.com" | url_parse | map: "hostname" }}
+```
+
+Output
+
+```
+example.com
 ```
 
 #### Templates
