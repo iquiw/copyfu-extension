@@ -1,6 +1,6 @@
 {
   "name": "copyfu",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "devDependencies": {
     "@skeletonlabs/skeleton": "^4.12.0",
     "@skeletonlabs/skeleton-svelte": "^4.12.0",
