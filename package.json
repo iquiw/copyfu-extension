@@ -2,8 +2,8 @@
   "name": "copyfu",
   "version": "0.10.0",
   "devDependencies": {
-    "@skeletonlabs/skeleton": "^4.12.0",
-    "@skeletonlabs/skeleton-svelte": "^4.12.0",
+    "@skeletonlabs/skeleton": "^4.13.0",
+    "@skeletonlabs/skeleton-svelte": "^4.13.0",
     "@tsconfig/svelte": "^5.0.8",
     "@wxt-dev/auto-icons": "^1.1.1",
     "@wxt-dev/module-svelte": "^2.0.5",
@@ -31,8 +31,8 @@
   "dependencies": {
     "@lucide/svelte": "^0.562.0",
     "@neodrag/svelte": "^3.0.0-next.8",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.2.2",
     "liquidjs": "^10.24.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.2.2"
   }
 }
