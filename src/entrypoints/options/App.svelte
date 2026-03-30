@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Github } from '@lucide/svelte';
   import { AppBar, Toast, createToaster } from '@skeletonlabs/skeleton-svelte';
   import { draggable, controls, events, position, Compartment, ControlFrom } from '@neodrag/svelte';
 
@@ -14,6 +13,7 @@
   import { validate } from './validate';
   import type { FormatTemplateForm } from './validate';
 
+  import GitHub from './GitHub.svelte';
   import TemplateEdit from './TemplateEdit.svelte';
   import TTButton from './TTButton.svelte';
   import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
@@ -170,7 +170,7 @@
           <h1 class="text-lg font-bold text-tertiary-600-400">{browser.i18n.getMessage('options_title')}</h1>
         </AppBar.Headline>
         <AppBar.Trail class="flex gap-2">
-          <a href={browser.runtime.getManifest().homepage_url} target="_blank" class="hover:preset-tonal"><Github size={24} /></a>
+          <a href={browser.runtime.getManifest().homepage_url} target="_blank" class="hover:preset-tonal"><GitHub/></a>
           <div>Version: {browser.runtime.getManifest().version}</div>
         </AppBar.Trail>
       </AppBar.Toolbar>

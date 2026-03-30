@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { Settings } from '@lucide/svelte';
   import appIcon from '@/assets/copyfu.svg';
 
+  import Cog from './Cog.svelte';
   import Format from './Format.svelte';
 </script>
 
@@ -13,7 +13,7 @@
       <h4 class="h4">CopyFU</h4>
       <span class="grow"></span>
       <button type="button" class="btn options" title={browser.i18n.getMessage('options_title')} onclick={() => browser.runtime.openOptionsPage()}>
-        <Settings size="24" />
+        <Cog/>
       </button>
     </div>
   </div>
