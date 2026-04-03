@@ -10,7 +10,7 @@
     <Format />
     <div class="flex justify-end">
       <img src={appIcon} class="logo" alt="CopyFU Logo" />
-      <h4 class="h4">CopyFU</h4>
+      <h4 class="app-name text-lg font-bold text-tertiary-600-400">CopyFU</h4>
       <span class="grow"></span>
       <button type="button" class="btn options" title={browser.i18n.getMessage('options_title')} onclick={() => browser.runtime.openOptionsPage()}>
         <Cog/>
@@ -24,8 +24,8 @@
     margin: 0.5rem;
     height: 1.5rem;
   }
-  .h4 {
-    height: 2.25rem;
-    line-height: 2.35rem;
+  .app-name {
+    height: 2.20rem;
+    line-height: 2.25rem;
   }
 </style>
