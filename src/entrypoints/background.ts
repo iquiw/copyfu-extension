@@ -42,10 +42,10 @@ function updateContextMenus(ftempls: FormatTemplate[]) {
 }
 
 const TemplatesPreset = [
-  { name: 'Markdown', template: '[{{title}}]({{url}})' },
-  { name: 'Org Mode', template: '[[{{url}}][{{title}}]]' },
-  { name: 'AsciiDoc', template: '{{url}}[{{title}}]' },
-  { name: 'Feed Link', template: '{{ feeds | first | map: "url" }}' },
+  { id: crypto.randomUUID(), name: 'Markdown', urlPattern: '', template: '[{{title}}]({{url}})' },
+  { id: crypto.randomUUID(), name: 'Org Mode', urlPattern: '', template: '[[{{url}}][{{title}}]]' },
+  { id: crypto.randomUUID(), name: 'AsciiDoc', urlPattern: '', template: '{{url}}[{{title}}]' },
+  { id: crypto.randomUUID(), name: 'Feed Link', urlPattern: '', template: '{{ feeds | first | map: "url" }}' },
 ];
 
 async function copyLinkFromContextMenu(index: number, url: string, tabId: number) {

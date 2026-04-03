@@ -1,8 +1,10 @@
 export interface FormatTemplateForm {
   id: string,
   name: string,
+  urlPattern: string,
   template: string,
   error: string | null,
+  errorPattern: string | null,
 }
 
 export interface FormatTemplateFormResult {
@@ -16,9 +18,10 @@ export function validate(ftemplsForm: FormatTemplateForm[]): FormatTemplateFormR
   for (const ftemplForm of ftemplsForm) {
     const name = ftemplForm.name.trim();
     const template = ftemplForm.template;
+    const urlPattern = ftemplForm.urlPattern;
     ftemplForm.error = null;
     if (name == '') {
-      if (template == '') {
+      if (template == '' && urlPattern == '') {
         // skip
         continue;
       } else {
@@ -28,6 +31,14 @@ export function validate(ftemplsForm: FormatTemplateForm[]): FormatTemplateFormR
     } else if (template == '') {
       ftemplForm.error = 'Template';
       hasError = true;
+    } else {
+      try {
+        new RegExp(ftemplForm.urlPattern);
+      } catch {
+        ftemplForm.error = 'UrlPattern';
+        ftemplForm.errorPattern = ftemplForm.urlPattern;
+        hasError = true;
+      }
     }
     result.push(ftemplForm);
   }

@@ -56,10 +56,27 @@
   });
 </script>
 
-{#await loadTemplates().then((fs) => {
-  formatsCache = fs;
-  formatResults = Array(fs.length).fill(FormatResult.Initial);
-  return fs;
+{#await loadTemplates().then(async (fs) => {
+  let url = '';
+  const tabs = await browser.tabs.query({
+    active: true,
+    lastFocusedWindow: true,
+  });
+  if (tabs.length > 0) {
+    const tab = tabs[0];
+    if (tab.url) {
+      url = tab.url;
+    }
+  }
+  let filteredFs = [];
+  for (let f of fs) {
+    if (f.urlPattern == '' || new RegExp(f.urlPattern).test(url)) {
+      filteredFs.push(f);
+    }
+  }
+  formatsCache = filteredFs;
+  formatResults = Array(filteredFs.length).fill(FormatResult.Initial);
+  return filteredFs;
 })}
 <p>Loading...</p>
 {:then formats}

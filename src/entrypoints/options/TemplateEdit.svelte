@@ -1,8 +1,8 @@
 <script lang="ts">
   import { formatTemplate } from '@/lib/format';
 
-  let { index, error, exampleUrl, exampleTitle, exampleFeeds,
-    name = $bindable(''), value = $bindable(''),
+  let { index, error, errorPattern, exampleUrl, exampleTitle, exampleFeeds,
+    name = $bindable(), value = $bindable(), pattern = $bindable(),
   } = $props();
 
   let exampleOutput = $derived.by(() => {
@@ -25,6 +25,7 @@
   function clear(): void {
     name = '';
     value = '';
+    pattern = '';
     error = '';
   };
 </script>
@@ -39,6 +40,17 @@
   </span>
   {:else}
   <input class="input placeholder-gray-300 dark:placeholder-gray-600 interactive" bind:value={name} placeholder="Markdown" required/>
+  {/if}
+</label>
+<label class="label">
+  <span class="label-text">{browser.i18n.getMessage('options_label_url_pattern')}</span>
+  {#if error == 'UrlPattern' && errorPattern == pattern}
+  <input class="input border-1 not(:focus):border-red-500 peer interactive" bind:value={pattern} />
+  <span class="mt-2 hidden text-sm text-red-500 peer-[:not(:focus)]:block">
+    {browser.i18n.getMessage('options_error_url_pattern_invalid')}
+  </span>
+  {:else}
+  <input class="input placeholder-gray-300 dark:placeholder-gray-600 interactive" bind:value={pattern} placeholder="^https://.*\.example\.com" />
   {/if}
 </label>
 <label class="label">

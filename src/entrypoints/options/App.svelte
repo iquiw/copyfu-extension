@@ -29,7 +29,7 @@
   let storagePromise = $state(loadTemplates().then((ftemplsLoad) => {
     ftemplsOriginal = ftemplsLoad;
     for (const ftempl of ftemplsLoad) {
-      addTemplate(ftempl.name, ftempl.template);
+      addTemplate(ftempl);
     }
     if (ftemplForms.length == 0) {
       addTemplate();
@@ -37,11 +37,29 @@
     return null;
   }));
 
-  function addTemplate(name: string = '', template: string = ''): void {
-    ftemplForms.push({ id: crypto.randomUUID(), name, template, error: null, });
+  function addTemplate(ftempl: FormatTemplate | null = null): void {
+    if (ftempl != null) {
+      ftemplForms.push({
+        id: ftempl.id,
+        name: ftempl.name,
+        urlPattern: ftempl.urlPattern,
+        template: ftempl.template,
+        error: null,
+        errorPattern: null,
+      });
+    } else {
+      ftemplForms.push({
+        id: crypto.randomUUID(),
+        name: '',
+        urlPattern: '',
+        template: '',
+        error: null,
+        errorPattern: null,
+      });
+    }
   }
 
-  function add(name: string = '', template: string = ''): Promise<null> {
+  function add(): Promise<null> {
     addTemplate();
     return Promise.resolve(null);
   }
@@ -123,7 +141,7 @@
       (ftemplsImport) => {
         ftemplForms = [];
         for (const ftempl of ftemplsImport) {
-          addTemplate(ftempl.name, ftempl.template);
+          addTemplate(ftempl);
         }
         toaster.success({
           title: browser.i18n.getMessage('options_success_imported'),
@@ -141,6 +159,7 @@
 
   let exampleUrl = $state('https://example.com');
   let exampleTitle = $state(browser.i18n.getMessage('options_example_title_value'));
+  let exampleUrlPattern = $state('');
   let exampleFeeds = $state(`[{ "url":"https://example.com/feed", "title": "RSS Feed", "type": "rss" },{ "url":"https://example.com/atom", "title": "Atom Feed", "type": "atom" }]`);
 </script>
 
@@ -154,11 +173,11 @@
   <Toast.Group {toaster}>
     {#snippet children(toast)}
       <Toast toast={toast}>
-	<Toast.Message>
-	  <Toast.Title>{toast.title}</Toast.Title>
-	  <Toast.Description>{toast.description}</Toast.Description>
-	</Toast.Message>
-	<Toast.CloseTrigger />
+        <Toast.Message>
+          <Toast.Title>{toast.title}</Toast.Title>
+          <Toast.Description>{toast.description}</Toast.Description>
+        </Toast.Message>
+        <Toast.CloseTrigger />
       </Toast>
     {/snippet}
   </Toast.Group>
@@ -254,9 +273,9 @@
             })
           ])}
           animate:flip={{ duration: flipDuration() }}>
-          <TemplateEdit index={index + 1} error={ftemplForm.error}
+          <TemplateEdit index={index + 1} error={ftemplForm.error} errorPattern={ftemplForm.errorPattern}
             {exampleUrl} {exampleTitle} {exampleFeeds}
-            bind:name={ftemplForm.name} bind:value={ftemplForm.template} />
+            bind:name={ftemplForm.name} bind:value={ftemplForm.template} bind:pattern={ftemplForm.urlPattern} />
         </div>
       {/each}
     </div>
