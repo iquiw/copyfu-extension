@@ -21,6 +21,10 @@ URL and title can be formatted using user-defined [LiquidJS](https://liquidjs.co
 - Export/import templates for backup and sharing
 - Drag-and-drop sorting for template management
 - Context menu support
+- Show templates only on matching sites with regexp URL patterns
+
+> [!NOTE]
+> Context menu shows all templates regardless of URL pattern for now.
 
 ## Usage
 
