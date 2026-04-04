@@ -2,8 +2,8 @@
   "name": "copyfu",
   "version": "0.10.0",
   "devDependencies": {
-    "@skeletonlabs/skeleton": "^4.13.0",
-    "@skeletonlabs/skeleton-svelte": "^4.13.0",
+    "@skeletonlabs/skeleton": "^4.14.0",
+    "@skeletonlabs/skeleton-svelte": "^4.14.0",
     "@tsconfig/svelte": "^5.0.8",
     "@wxt-dev/auto-icons": "^1.1.1",
     "@wxt-dev/module-svelte": "^2.0.5",
