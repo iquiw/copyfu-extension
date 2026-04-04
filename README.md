@@ -166,8 +166,7 @@ and other URLs are unchanged.
 Template to convert Box URL to shared one and output Markdown link.
 
 ```mustache
-{%- assign is_box = url | match: "https://app.box.com/.*\\?s=.*" -%}
-{%- if is_box -%}
+{%- if url | match: "https://app.box.com/.*\\?s=.*" -%}
 [{{title}}]({{ url | sub: "https://.*\\?s=(.*)", "$1" | prepend: "https://<Custom Subdomain>.box.com/s/" }})
 {%- endif -%}
 ```
