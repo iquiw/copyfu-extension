@@ -25,6 +25,9 @@ export default defineConfig({
     browser_specific_settings: {
       gecko: {
         "id": "{ea350ae6-d119-44b0-a6d7-91b9235ad119}",
+        "data_collection_permissions": {
+          "required": ["none"]
+        }
       },
     },
     default_locale: 'en',
