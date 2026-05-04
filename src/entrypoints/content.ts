@@ -1,4 +1,5 @@
 import { COMMAND_B2C_COPY_LINK, COMMAND_P2C_QUERY_FEED } from '@/lib/command';
+import { isEmptyOutput, parseCopyOutput, writeClipboard } from '@/lib/clipboard';
 import { formatTemplate } from '@/lib/format';
 import type { Feed } from '@/lib/format';
 
@@ -30,7 +31,7 @@ function queryLinkText(): string | null {
 export default defineContentScript({
   matches: ['*://*/*'],
   main() {
-    browser.runtime.onMessage.addListener((request, sender, sendMessage) => {
+    browser.runtime.onMessage.addListener(async (request, sender, sendMessage) => {
       if (request.action == COMMAND_P2C_QUERY_FEED) {
         const feeds = queryFeed();
         sendMessage({ feeds });
@@ -40,8 +41,9 @@ export default defineContentScript({
         const linkText = queryLinkText();
 
         const text = formatTemplate(template, { url, title: linkText?? '', feeds: [] });
-        if (text.trim().length > 0) {
-          navigator.clipboard.writeText(text);
+        const typedText = parseCopyOutput(text, url);
+        if (!isEmptyOutput(typedText)) {
+          await writeClipboard(typedText);
         }
       }
     });

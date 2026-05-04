@@ -17,6 +17,7 @@ URL and title can be formatted using user-defined [LiquidJS](https://liquidjs.co
 - Copy URL and title of the current tab with customizable templates
 - Copy URL and title of RSS/Atom feeds
 - User-defined LiquidJS templates for advanced formatting
+- Copy formatted template as HTML text
 - Keyboard shortcuts for quick access
 - Export/import templates for backup and sharing
 - Drag-and-drop sorting for template management
@@ -206,6 +207,15 @@ Template to prefer Atom feed URL.
 {%- else -%}
   {{ feeds | first | map: "url" }}
 {%- endif -%}
+```
+
+##### HTML format example
+
+Templates starting with `!copyfu:html` are copied as HTML text.
+
+```mustache
+!copyfu:html
+<a href="{{url}}">{{title}}</a>
 ```
 
 ## Development

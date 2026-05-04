@@ -12,6 +12,45 @@ export enum FormatResult {
   Error,
 }
 
+interface TypedText {
+  html?: string,
+  plain: string,
+}
+
+export function isEmptyOutput(typedText: TypedText): boolean {
+  // When html is defined, the template is in HTML mode.
+  // In HTML mode, it's treated as empty even if plain (URL) is non-empty, because the HTML body is what matters.
+  return ((typedText.html !== undefined && typedText.html.trim().length == 0)
+    || typedText.plain.trim().length == 0);
+}
+
+export function parseCopyOutput(text: string, url: string): TypedText {
+  const COPYFU_HTML_MARKER = '!copyfu:html\n';
+
+  if (text.startsWith(COPYFU_HTML_MARKER)) {
+    return {
+      html: text.substring(COPYFU_HTML_MARKER.length),
+      plain: url,
+    };
+  }
+  return {
+    plain: text,
+  };
+}
+
+export async function writeClipboard(typedText: TypedText): Promise<void> {
+  if (typedText.html) {
+    const data = [new ClipboardItem({
+      ['text/html']: new Blob([typedText.html], { type: 'text/html' }),
+      ['text/plain']: new Blob([typedText.plain], { type: 'text/plain' }),
+    })];
+
+    await navigator.clipboard.write(data);
+  } else {
+    await navigator.clipboard.writeText(typedText.plain);
+  }
+}
+
 export async function copyFormattedTemplate(template: string): Promise<FormatResult> {
   try {
     const tabs = await browser.tabs.query({
@@ -30,15 +69,17 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
           return FormatResult.NoLink;
         }
       }
+      const url = tab.url ?? '';
       const text = formatTemplate(template, {
-        url: tab.url ?? '',
+        url: url,
         title: tab.title ?? '',
         feeds,
       });
-      if (text.trim().length == 0) {
+      const typedText = parseCopyOutput(text, url);
+      if (isEmptyOutput(typedText)) {
         return FormatResult.Empty;
       }
-      navigator.clipboard.writeText(text);
+      await writeClipboard(typedText);
 
       return FormatResult.Success;
     } else {

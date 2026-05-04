@@ -194,9 +194,14 @@
         </AppBar.Trail>
       </AppBar.Toolbar>
     </AppBar>
-    <div class="text-sm">
+    <div class="mx-2 text-sm">
       <p>{@html browser.i18n.getMessage('options_help_text1')}</p>
-      <p>{@html browser.i18n.getMessage('options_help_text2')}</p>
+      <ul class="mx-5 list-disc">
+        <li>{@html browser.i18n.getMessage('options_help_text2_1')}</li>
+        <li>{@html browser.i18n.getMessage('options_help_text2_2')}</li>
+        <li>{@html browser.i18n.getMessage('options_help_text2_3')}</li>
+        <li>{@html browser.i18n.getMessage('options_help_text2_4')}</li>
+      </ul>
       <p>{@html browser.i18n.getMessage('options_help_text3')}</p>
     </div>
     <div class="flex space-x-2">

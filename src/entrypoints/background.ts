@@ -46,6 +46,7 @@ const TemplatesPreset = [
   { id: crypto.randomUUID(), name: 'Org Mode', urlPattern: '', template: '[[{{url}}][{{title}}]]' },
   { id: crypto.randomUUID(), name: 'AsciiDoc', urlPattern: '', template: '{{url}}[{{title}}]' },
   { id: crypto.randomUUID(), name: 'Feed Link', urlPattern: '', template: '{{ feeds | first | map: "url" }}' },
+  { id: crypto.randomUUID(), name: 'HTML', urlPattern: '', template: '!copyfu:html\n<a href="{{url}}">{{title}}</a>' },
 ];
 
 async function copyLinkFromContextMenu(index: number, url: string, tabId: number) {

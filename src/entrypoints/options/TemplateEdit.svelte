@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { parseCopyOutput } from '@/lib/clipboard';
   import { formatTemplate } from '@/lib/format';
 
   let { index, error, errorPattern, exampleUrl, exampleTitle, exampleFeeds,
@@ -12,11 +13,12 @@
     } catch {
     }
     try {
-      return formatTemplate(value, {
+      const text = formatTemplate(value, {
         url: exampleUrl,
         title: exampleTitle,
         feeds,
       });
+      return parseCopyOutput(text, exampleUrl);
     } catch (e) {
       return e;
     }
@@ -66,7 +68,13 @@
 </label>
 <label class="label">
   <span class="label-text">{browser.i18n.getMessage('options_label_example_output')}</span>
+  {#if exampleOutput.html !== undefined }
+  <div class="p-3 text-base text-surface-50 bg-surface-500">{exampleOutput.html}</div>
+  {:else if exampleOutput.plain !== undefined }
+  <textarea class="textarea bg-surface-100-900" readonly tabindex="-1">{exampleOutput.plain}</textarea>
+  {:else}
   <textarea class="textarea bg-surface-100-900" readonly tabindex="-1">{exampleOutput}</textarea>
+  {/if}
 </label>
 <div class="grid justify-center m-2">
   <button class="btn preset-tonal interactive" onclick={clear}>{browser.i18n.getMessage('options_button_clear')}</button>
