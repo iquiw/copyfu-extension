@@ -188,7 +188,7 @@
         <AppBar.Headline class="flex justify-center">
           <h1 class="text-lg font-bold text-tertiary-600-400">{browser.i18n.getMessage('options_title')}</h1>
         </AppBar.Headline>
-        <AppBar.Trail class="flex gap-2">
+        <AppBar.Trail class="flex gap-2 items-center">
           <a href={browser.runtime.getManifest().homepage_url} target="_blank" class="hover:preset-tonal"><GitHub/></a>
           <div>Version: {browser.runtime.getManifest().version}</div>
         </AppBar.Trail>
