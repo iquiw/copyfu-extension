@@ -1,12 +1,13 @@
 <script lang="ts">
   import { parseCopyOutput } from '@/lib/clipboard';
+  import type { TypedText } from '@/lib/clipboard';
   import { formatTemplate } from '@/lib/format';
 
   let { index, error, errorPattern, exampleUrl, exampleTitle, exampleFeeds,
     name = $bindable(), value = $bindable(), pattern = $bindable(),
   } = $props();
 
-  let exampleOutput = $derived.by(() => {
+  let exampleOutput = $derived.by((): TypedText | Error => {
     let feeds = [];
     try {
       feeds = JSON.parse(exampleFeeds);
@@ -20,7 +21,7 @@
       });
       return parseCopyOutput(text, exampleUrl);
     } catch (e) {
-      return e;
+      return e instanceof Error ? e : new Error(String(e));
     }
   });
 
@@ -68,12 +69,12 @@
 </label>
 <label class="label">
   <span class="label-text">{browser.i18n.getMessage('options_label_example_output')}</span>
-  {#if exampleOutput.html !== undefined }
-  <div class="p-3 text-base text-surface-50 bg-surface-500">{exampleOutput.html}</div>
-  {:else if exampleOutput.plain !== undefined }
-  <textarea class="textarea bg-surface-100-900" readonly tabindex="-1">{exampleOutput.plain}</textarea>
+  {#if exampleOutput instanceof Error}
+  <div class="h-15.5 px-3 py-1 rounded-sm text-base text-surface-900-100 preset-filled-error-200-800">{exampleOutput.message}</div>
+  {:else if exampleOutput.html !== undefined}
+  <div class="h-15.5 px-3 py-1 rounded-sm text-base text-surface-50 bg-surface-500">{exampleOutput.html}</div>
   {:else}
-  <textarea class="textarea bg-surface-100-900" readonly tabindex="-1">{exampleOutput}</textarea>
+  <textarea class="textarea bg-surface-100-900" readonly tabindex="-1">{exampleOutput.plain}</textarea>
   {/if}
 </label>
 <div class="grid justify-center m-2">

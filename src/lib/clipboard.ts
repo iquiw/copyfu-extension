@@ -12,7 +12,7 @@ export enum FormatResult {
   Error,
 }
 
-interface TypedText {
+export interface TypedText {
   html?: string,
   plain: string,
 }
