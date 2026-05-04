@@ -160,6 +160,7 @@
   let exampleUrl = $state('https://example.com');
   let exampleTitle = $state(browser.i18n.getMessage('options_example_title_value'));
   let exampleUrlPattern = $state('');
+  let exampleFaviconUrl = $state('https://example.com/favicon.ico');
   let exampleFeeds = $state(`[{ "url":"https://example.com/feed", "title": "RSS Feed", "type": "rss" },{ "url":"https://example.com/atom", "title": "Atom Feed", "type": "atom" }]`);
 </script>
 
@@ -201,6 +202,7 @@
         <li>{@html browser.i18n.getMessage('options_help_text2_2')}</li>
         <li>{@html browser.i18n.getMessage('options_help_text2_3')}</li>
         <li>{@html browser.i18n.getMessage('options_help_text2_4')}</li>
+        <li>{@html browser.i18n.getMessage('options_help_text2_5')}</li>
       </ul>
       <p>{@html browser.i18n.getMessage('options_help_text3')}</p>
     </div>
@@ -242,6 +244,10 @@
         {browser.i18n.getMessage('options_label_example_title')}
         <input id="example-title" class="input" bind:value={exampleTitle} />
       </label>
+     <label for="example-favicon-url">
+        {browser.i18n.getMessage('options_label_example_favicon_url')}
+        <input id="example-favicon-url" class="input" bind:value={exampleFaviconUrl} />
+      </label>
       <label for="example-feeds">
         {browser.i18n.getMessage('options_label_example_feeds')}
         <input id="example-feeds" class="input" bind:value={exampleFeeds} />
@@ -279,7 +285,7 @@
           ])}
           animate:flip={{ duration: flipDuration() }}>
           <TemplateEdit index={index + 1} error={ftemplForm.error} errorPattern={ftemplForm.errorPattern}
-            {exampleUrl} {exampleTitle} {exampleFeeds}
+            {exampleUrl} {exampleTitle} {exampleFaviconUrl} {exampleFeeds}
             bind:name={ftemplForm.name} bind:value={ftemplForm.template} bind:pattern={ftemplForm.urlPattern} />
         </div>
       {/each}

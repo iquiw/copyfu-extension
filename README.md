@@ -15,6 +15,7 @@ URL and title can be formatted using user-defined [LiquidJS](https://liquidjs.co
 ## Feature
 
 - Copy URL and title of the current tab with customizable templates
+- Copy Favicon URL
 - Copy URL and title of RSS/Atom feeds
 - User-defined LiquidJS templates for advanced formatting
 - Copy formatted template as HTML text
@@ -23,6 +24,9 @@ URL and title can be formatted using user-defined [LiquidJS](https://liquidjs.co
 - Drag-and-drop sorting for template management
 - Context menu support
 - Show templates only on matching sites with regexp URL patterns
+
+> [!NOTE]
+> Favicon URL on Firefox could be base64 encoded data URL unlike on Chrome.
 
 > [!NOTE]
 > Context menu shows all templates regardless of URL pattern for now.
@@ -60,11 +64,12 @@ Then you can defined custom templates in [LiquidJS](https://liquidjs.com).
 
 The following variables are defined when formatting templates.
 
-| Variable | Type                                                         | Description                                                        |
-| ---      | ---                                                          | ---                                                                |
-| `url`    | string                                                       | URL of the current tab.                                            |
-| `title`  | string                                                       | Title of the current tab.                                          |
-| `feeds`  | array of type `{ url: string, title: string, type: string }` | Feeds URL/Title if available.<br>`type` is either `rss` or `atom`. |
+| Variable     | Type                                                         | Description                                                        |
+| ---          | ---                                                          | ---                                                                |
+| `url`        | string                                                       | URL of the current tab.                                            |
+| `title`      | string                                                       | Title of the current tab.                                          |
+| `faviconUrl` | string                                                       | Favicon URL of the current tab.                                    |
+| `feeds`      | array of type `{ url: string, title: string, type: string }` | Feeds URL/Title if available.<br>`type` is either `rss` or `atom`. |
 
 #### Filters
 

@@ -6,26 +6,30 @@ import type { FormatContext } from '../format';
 const CONTEXT1: FormatContext = {
   url: 'https://example.com',
   title: 'TITLE',
+  faviconUrl: 'https://example.com/favicon.ico',
   feeds: [{ url: 'https://example.com/feed', title: 'RSS Feed', type: 'rss' }],
 }
 
 const CONTEXT2: FormatContext = {
   url: 'https://github.com/sveltejs/svelte/',
   title: 'GitHub - sveltejs/svelte: web development for the rest of us',
+  faviconUrl: 'https://github.githubassets.com/favicons/favicon.svg',
   feeds: [
     { url: 'https://example.com/feed', title: 'RSS Feed', type: 'rss' },
     { url: 'https://example.com/atom', title: 'Atom Feed', type: 'atom' }],
 }
 
-const CONTEXT3 = {
+const CONTEXT3: FormatContext = {
   url: 'https://www.amazon.co.jp/%E3%80%90Amazon-co-jp-%E9%99%90%E5%AE%9A%E3%80%91Kensington-K72084JP-Bluetooth%E3%83%BB2-4GHz%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%E3%83%BB%E6%9C%89%E7%B7%9A%E6%8E%A5%E7%B6%9A%E5%AF%BE%E5%BF%9C-%E5%86%8D%E7%94%9F%E3%83%97%E3%83%A9%E3%82%B9%E3%83%81%E3%83%83%E3%82%AF%E4%BD%BF%E7%94%A8/dp/B0DM5BJFLR/ref=sr_1_4?dib_tag=se&qid=1754959361&refinements=p_123%3A314147&rnid=23341432051&s=computers&sr=1-4&th=1',
   title: 'Amazon.co.jp: 【Amazon.co.jp 限定】Kensington ケンジントン SlimBlade Pro EQトラックボール ホワイト K72084JP Bluetooth・2.4GHzワイヤレス・有線接続対応 再生プラスチック使用 : パソコン・周辺機器',
+  faviconUrl: 'https://www.amazon.co.jp/favicon.ico',
   feeds: [],
 }
 
-const CONTEXT4 = {
+const CONTEXT4: FormatContext = {
   url: 'https://user01:passwd01@example.com:8080/path?search1=value1&search2=value2#hash',
   title: 'TITLE',
+  faviconUrl: '',
   feeds: [],
 }
 
@@ -63,6 +67,11 @@ describe('formatTemplate', () => {
 
     const s2 = formatTemplate(template, CONTEXT1);
     expect(s2).toBe('[TITLE](https://example.com)');
+  });
+
+  it('should format with faviconUrl', async () => {
+    const s = formatTemplate('{{ faviconUrl }}', CONTEXT1);
+    expect(s).toBe('https://example.com/favicon.ico');
   });
 
   it('should format with one feed', async () => {

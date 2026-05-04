@@ -3,7 +3,7 @@
   import type { TypedText } from '@/lib/clipboard';
   import { formatTemplate } from '@/lib/format';
 
-  let { index, error, errorPattern, exampleUrl, exampleTitle, exampleFeeds,
+  let { index, error, errorPattern, exampleUrl, exampleTitle, exampleFaviconUrl, exampleFeeds,
     name = $bindable(), value = $bindable(), pattern = $bindable(),
   } = $props();
 
@@ -17,6 +17,7 @@
       const text = formatTemplate(value, {
         url: exampleUrl,
         title: exampleTitle,
+        faviconUrl: exampleFaviconUrl,
         feeds,
       });
       return parseCopyOutput(text, exampleUrl);

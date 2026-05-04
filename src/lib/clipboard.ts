@@ -73,6 +73,7 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
       const text = formatTemplate(template, {
         url: url,
         title: tab.title ?? '',
+        faviconUrl: tab.favIconUrl ?? '',
         feeds,
       });
       const typedText = parseCopyOutput(text, url);

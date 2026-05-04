@@ -40,7 +40,12 @@ export default defineContentScript({
         const url = request.url;
         const linkText = queryLinkText();
 
-        const text = formatTemplate(template, { url, title: linkText?? '', feeds: [] });
+        const text = formatTemplate(template, {
+          url,
+          title: linkText?? '',
+          faviconUrl: '',
+          feeds: [],
+        });
         const typedText = parseCopyOutput(text, url);
         if (!isEmptyOutput(typedText)) {
           await writeClipboard(typedText);

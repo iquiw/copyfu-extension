@@ -39,9 +39,12 @@
     "message": "If URL pattern is specified, the template is displayed only for the matched sites."
   },
   "options_help_text2_3": {
-    "message": "If feed links are available, they are assigned to <code class=\"code\">feeds</code>, which is an array of objects of type <code class=\"code\">{ url: string, title: string, type: string }</code>."
+    "message": "<code class=\"code\">&lbrace;&lbrace;faviconUrl&rbrace;&rbrace;</code> is replaced by Favicon URL of the current page."
   },
   "options_help_text2_4": {
+    "message": "If feed links are available, they are assigned to <code class=\"code\">feeds</code>, which is an array of objects of type <code class=\"code\">{ url: string, title: string, type: string }</code>."
+  },
+  "options_help_text2_5": {
     "message": "Templates starting with <code class=\"code\">!copyfu:html</code> are copied as HTML text."
   },
   "options_help_text3": {
@@ -55,6 +58,9 @@
   },
   "options_label_url_pattern": {
     "message": "URL pattern (RegExp)"
+  },
+  "options_label_example_favicon_url": {
+    "message": "Example Favicon URL"
   },
   "options_label_example_feeds": {
     "message": "Example Feeds (JSON)"

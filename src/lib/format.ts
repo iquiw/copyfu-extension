@@ -11,6 +11,7 @@ export interface Feed {
 export interface FormatContext {
   url: string,
   title: string,
+  faviconUrl: string,
   feeds: Feed[],
 }
 
@@ -49,6 +50,7 @@ export function formatTemplate(template: string, context: FormatContext): string
   const text = engine.parseAndRenderSync(template, {
     url: context.url,
     title: context.title,
+    faviconUrl: context.faviconUrl,
     feeds: context.feeds,
   });
   return text as string;

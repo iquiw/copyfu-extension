@@ -39,9 +39,12 @@
     "message": "対象 URL が指定されている場合、正規表現パターンにマッチするサイトでのみ候補が表示されます。"
   },
   "options_help_text2_3": {
-    "message": "フィードが存在する場合、<code class=\"code\">feeds</code> という名前の <code class=\"code\">{ url: string, title: string, type: string }</code> 型のオブジェクトの配列にアサインされます。"
+    "message": "<code class=\"code\">&lbrace;&lbrace;faviconUrl&rbrace;&rbrace;</code> は現在のタブの Favicon URL に変換されます。"
   },
   "options_help_text2_4": {
+    "message": "フィードが存在する場合、<code class=\"code\">feeds</code> という名前の <code class=\"code\">{ url: string, title: string, type: string }</code> 型のオブジェクトの配列にアサインされます。"
+  },
+  "options_help_text2_5": {
     "message": "<code class=\"code\">!copyfu:html</code> が最初の行にあるテンプレートは HTML 形式でコピーされます。"
   },
   "options_help_text3": {
@@ -58,6 +61,9 @@
   },
   "options_label_example_output": {
     "message": "出力例"
+  },
+  "options_label_example_favicon_url": {
+    "message": "Favicon URL の例"
   },
   "options_label_example_feeds": {
     "message": "フィードの例 (JSON)"
