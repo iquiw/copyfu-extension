@@ -11,8 +11,8 @@
     "svelte-check": "^4.4.7",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.5",
-    "wxt": "^0.20.25"
+    "vitest": "^4.1.8",
+    "wxt": "^0.20.26"
   },
   "description": "Copy Formatted URL and title",
   "private": true,
@@ -30,8 +30,8 @@
   "type": "module",
   "dependencies": {
     "@neodrag/svelte": "^3.0.0-next.8",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "^4.3.0",
     "liquidjs": "^10.25.7",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.3.0"
   }
 }
