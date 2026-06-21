@@ -1,22 +1,19 @@
 <script lang="ts">
   import { AppBar, Toast, createToaster } from '@skeletonlabs/skeleton-svelte';
-  import { draggable, controls, events, position, Compartment, ControlFrom } from '@neodrag/svelte';
+  import { type DndEvent, dragHandleZone } from "svelte-dnd-action";
 
   import { flip } from 'svelte/animate';
 
   import { COMMAND_P2B_REFRESH_MENU } from '@/lib/command';
-  import { loadTemplates, saveTemplates, serialize } from '@/lib/storage';
-  import type { FormatTemplate } from '@/lib/storage';
+  import { type FormatTemplate, loadTemplates, saveTemplates, serialize } from '@/lib/storage';
 
   import { importTemplates, exportTemplates } from './imex';
 
-  import { validate } from './validate';
-  import type { FormatTemplateForm } from './validate';
+  import { type FormatTemplateForm, validate } from './validate';
 
   import GitHub from './GitHub.svelte';
   import TemplateEdit from './TemplateEdit.svelte';
   import TTButton from './TTButton.svelte';
-  import { flipDuration, flipWorkaroundPlugin } from './neodrag-plugin-flip';
   import appIcon from '@/assets/copyfu.svg';
 
   const toaster = createToaster({
@@ -98,30 +95,6 @@
     }
   }
 
-  interface DragState {
-    ftemplId: string,
-  };
-
-  let dragState: DragState | null = null;
-
-  const positionComp = new Compartment(() =>
-    position({ current: null }),
-  );
-
-  function findTargetIndex(event: PointerEvent): number {
-    const elements = document.elementsFromPoint(event.clientX, event.clientY);
-    for (const element of elements) {
-      const indexStr = element.getAttribute('data-ftempl-index');
-      if (indexStr != null) {
-        const index = parseInt(indexStr, 10);
-        if (ftemplForms[index].id !== dragState?.ftemplId) {
-          return index;
-        }
-      }
-    }
-    return -1;
-  }
-
   function clickImportFile() {
     const input = document.getElementById('import-file');
     input?.click();
@@ -157,9 +130,14 @@
     );
   }
 
+  const flipDurationMs = 200;
+
+  function handleSort(e: CustomEvent<DndEvent<FormatTemplateForm>>) {
+    ftemplForms = e.detail.items;
+  }
+
   let exampleUrl = $state('https://example.com');
   let exampleTitle = $state(browser.i18n.getMessage('options_example_title_value'));
-  let exampleUrlPattern = $state('');
   let exampleFaviconUrl = $state('https://example.com/favicon.ico');
   let exampleFeeds = $state(`[{ "url":"https://example.com/feed", "title": "RSS Feed", "type": "rss" },{ "url":"https://example.com/atom", "title": "Atom Feed", "type": "atom" }]`);
 </script>
@@ -255,35 +233,15 @@
     </details>
     {#await storagePromise}
     <p>Loading...</p>
-    {:then dummy}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {:then}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8"
+      use:dragHandleZone="{{items: ftemplForms, flipDurationMs,
+        dropTargetStyle: { outline: 'var(--color-success-500) solid 2px',  borderRadius: '12px' } }}"
+      onconsider="{handleSort}"
+      onfinalize="{handleSort}">
       {#each ftemplForms as ftemplForm, index (ftemplForm.id)}
         <div class="card w-full preset-outlined-primary-500 p-2"
-          data-ftempl-index={index}
-          {@attach draggable(() => [
-            flipWorkaroundPlugin(),
-            positionComp,
-            controls({ allow: ControlFrom.selector('.header') }),
-            events({
-              onDragStart: (data) => {
-                data.rootNode.style.zIndex = '100';
-                dragState = { ftemplId: ftemplForm.id };
-              },
-              onDragEnd: (data) => {
-                data.rootNode.style.zIndex = '';
-                const dragIndex = ftemplForms.findIndex((ftemplForm: FormatTemplateForm) => ftemplForm.id === dragState?.ftemplId);;
-                const dropIndex = findTargetIndex(data.event);
-
-                positionComp.current = position({ current: { x: 0, y: 0 } });
-                if (dragIndex !== -1 && dropIndex !== -1 && !isNaN(dropIndex)) {
-                  const [item] = ftemplForms.splice(dragIndex, 1);
-                  ftemplForms.splice(dropIndex, 0, item);
-                }
-                dragState = null;
-              },
-            })
-          ])}
-          animate:flip={{ duration: flipDuration() }}>
+          animate:flip="{{ duration: flipDurationMs }}">
           <TemplateEdit index={index + 1} error={ftemplForm.error} errorPattern={ftemplForm.errorPattern}
             {exampleUrl} {exampleTitle} {exampleFaviconUrl} {exampleFeeds}
             bind:name={ftemplForm.name} bind:value={ftemplForm.template} bind:pattern={ftemplForm.urlPattern} />

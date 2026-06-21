@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { parseCopyOutput } from '@/lib/clipboard';
-  import type { TypedText } from '@/lib/clipboard';
+  import { type TypedText, parseCopyOutput } from '@/lib/clipboard';
   import { formatTemplate } from '@/lib/format';
+  import { dragHandle } from "svelte-dnd-action";
 
   let { index, error, errorPattern, exampleUrl, exampleTitle, exampleFaviconUrl, exampleFeeds,
     name = $bindable(), value = $bindable(), pattern = $bindable(),
@@ -34,7 +34,7 @@
   };
 </script>
 
-<header class="header cursor-move bg-surface-100-900 rounded-md p-2">⋮⋮ {browser.i18n.getMessage('options_label_template')} {index}</header>
+<header use:dragHandle class="header cursor-move bg-surface-100-900 rounded-md p-2">⋮⋮ {browser.i18n.getMessage('options_label_template')} {index}</header>
 <label class="label">
   <span class="label-text">{browser.i18n.getMessage('options_label_name')}</span>
   {#if error == 'Name'}
