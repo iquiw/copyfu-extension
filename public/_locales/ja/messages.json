@@ -1,4 +1,25 @@
 {
+  "options_badge_format_error": {
+    "message": "エラー"
+  },
+  "options_badge_format_html": {
+    "message": "HTML形式"
+  },
+  "options_badge_format_text": {
+    "message": "テキスト形式"
+  },
+  "options_badge_match_all": {
+    "message": "すべてのサイトに適用"
+  },
+  "options_badge_match_error": {
+    "message": "エラー"
+  },
+  "options_badge_match_matched": {
+    "message": "マッチする"
+  },
+  "options_badge_match_unmatched": {
+    "message": "マッチしない"
+  },
   "options_button_add": {
     "message": "テンプレート追加"
   },

@@ -1,4 +1,25 @@
 {
+  "options_badge_format_error": {
+    "message": "Error"
+  },
+  "options_badge_format_html": {
+    "message": "HTML"
+  },
+  "options_badge_format_text": {
+    "message": "Text"
+  },
+  "options_badge_match_all": {
+    "message": "Applied to All"
+  },
+  "options_badge_match_error": {
+    "message": "Error"
+  },
+  "options_badge_match_matched": {
+    "message": "Matched"
+  },
+  "options_badge_match_unmatched": {
+    "message": "Unmatched"
+  },
   "options_button_add": {
     "message": "Add"
   },

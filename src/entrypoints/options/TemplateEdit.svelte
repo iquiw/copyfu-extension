@@ -25,6 +25,13 @@
       return e instanceof Error ? e : new Error(String(e));
     }
   });
+  let patternMatch = $derived.by((): boolean | Error => {
+    try {
+      return new RegExp(pattern).test(exampleUrl);
+    } catch (e) {
+      return e instanceof Error ? e : new Error(String(e));
+    }
+  });
 
   function clear(): void {
     name = '';
@@ -69,7 +76,27 @@
   {/if}
 </label>
 <label class="label">
-  <span class="label-text">{browser.i18n.getMessage('options_label_example_output')}</span>
+  <div class="flex items-center justify-between my-2">
+    <span class="label-text">{browser.i18n.getMessage('options_label_example_output')}</span>
+    <div class="flex gap-1">
+      {#if pattern == ''}
+      <span class="badge preset-tonal-primary">{browser.i18n.getMessage('options_badge_match_all')}</span>
+      {:else if patternMatch instanceof Error}
+      <span class="badge preset-filled-error-300-700">{browser.i18n.getMessage('options_badge_match_error')}</span>
+      {:else if patternMatch}
+      <span class="badge preset-filled-success-300-700">{browser.i18n.getMessage('options_badge_match_matched')}</span>
+      {:else}
+      <span class="badge preset-filled-warning-300-700">{browser.i18n.getMessage('options_badge_match_unmatched')}</span>
+      {/if}
+      {#if exampleOutput instanceof Error}
+      <span class="badge preset-filled-error-200-800">{browser.i18n.getMessage('options_badge_format_error')}</span>
+      {:else if exampleOutput.html !== undefined}
+      <span class="badge preset-filled-secondary-300-700">{browser.i18n.getMessage('options_badge_format_html')}</span>
+      {:else}
+      <span class="badge preset-filled-surface-300-700">{browser.i18n.getMessage('options_badge_format_text')}</span>
+      {/if}
+    </div>
+  </div>
   {#if exampleOutput instanceof Error}
   <div class="h-15.5 px-3 py-1 rounded-sm text-base text-surface-900-100 preset-filled-error-200-800">{exampleOutput.message}</div>
   {:else if exampleOutput.html !== undefined}
