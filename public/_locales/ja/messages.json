@@ -32,6 +32,9 @@
   "options_button_import": {
     "message": "インポート"
   },
+  "options_button_preset": {
+    "message": "プリセット復元"
+  },
   "options_button_save": {
     "message": "保存"
   },
@@ -118,6 +121,9 @@
   },
   "options_tooltip_import": {
     "message": "ローカルの JSON ファイルからテンプレートをインポートします。"
+  },
+  "options_tooltip_preset": {
+    "message": "プリセットを復元します。名前が同じプリセットがある場合は追加されません。"
   },
   "options_tooltip_save": {
     "message": "テンプレートをストレージに保存します。空のテンプレートは削除されます。"

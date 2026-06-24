@@ -127,3 +127,14 @@ export function deserialize(serialized: string): FormatTemplate[] {
   }
   return ftempls;
 }
+
+export function createPresetTemplates(): FormatTemplate[] {
+  return [
+    { id: crypto.randomUUID(), name: 'Markdown', urlPattern: '', template: '[{{title}}]({{url}})' },
+    { id: crypto.randomUUID(), name: 'Org Mode', urlPattern: '', template: '[[{{url}}][{{title}}]]' },
+    { id: crypto.randomUUID(), name: 'AsciiDoc', urlPattern: '', template: '{{url}}[{{title}}]' },
+    { id: crypto.randomUUID(), name: 'Feed Link', urlPattern: '', template: '{{ feeds | first | map: "url" }}' },
+    { id: crypto.randomUUID(), name: 'HTML', urlPattern: '', template: '!copyfu:html\n<a href="{{url}}">{{title}}</a>' },
+    { id: crypto.randomUUID(), name: 'Favicon', urlPattern: '', template: '{{faviconUrl}}' },
+  ];
+}

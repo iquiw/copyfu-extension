@@ -1,6 +1,6 @@
 import { COMMAND_B2P_COPY_TEMPLATE, COMMAND_B2C_COPY_LINK, COMMAND_P2B_REFRESH_MENU, findTemplateIndex } from '@/lib/command';
 import { isMenuItemEnabled } from '@/lib/format';
-import { FormatTemplate, loadTemplates, saveTemplates } from '@/lib/storage';
+import { type FormatTemplate, createPresetTemplates, loadTemplates, saveTemplates } from '@/lib/storage';
 
 async function popupAndCopy(index: number) {
   let doCopy = false;
@@ -41,15 +41,6 @@ function updateContextMenus(ftempls: FormatTemplate[]) {
   }
 }
 
-const TemplatesPreset = [
-  { id: crypto.randomUUID(), name: 'Markdown', urlPattern: '', template: '[{{title}}]({{url}})' },
-  { id: crypto.randomUUID(), name: 'Org Mode', urlPattern: '', template: '[[{{url}}][{{title}}]]' },
-  { id: crypto.randomUUID(), name: 'AsciiDoc', urlPattern: '', template: '{{url}}[{{title}}]' },
-  { id: crypto.randomUUID(), name: 'Feed Link', urlPattern: '', template: '{{ feeds | first | map: "url" }}' },
-  { id: crypto.randomUUID(), name: 'HTML', urlPattern: '', template: '!copyfu:html\n<a href="{{url}}">{{title}}</a>' },
-  { id: crypto.randomUUID(), name: 'Favicon', urlPattern: '', template: '{{faviconUrl}}' },
-];
-
 async function copyLinkFromContextMenu(index: number, url: string, tabId: number) {
   const ftempls = await loadTemplates();
   if (index >= 0 && index < ftempls.length) {
@@ -77,7 +68,7 @@ export default defineBackground(() => {
   browser.runtime.onInstalled.addListener((details) => {
     loadTemplates().then((ftempls) => {
       if (ftempls.length == 0) {
-        saveTemplates(TemplatesPreset);
+        saveTemplates(createPresetTemplates());
       }
     });
   });
@@ -100,10 +91,6 @@ export default defineBackground(() => {
   });
 
   loadTemplates().then((ftempls) => {
-    if (ftempls.length == 0) {
-      updateContextMenus(TemplatesPreset);
-    } else {
-      updateContextMenus(ftempls);
-    }
+    updateContextMenus(ftempls);
   });
 });

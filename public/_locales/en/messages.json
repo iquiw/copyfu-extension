@@ -32,6 +32,9 @@
   "options_button_import": {
     "message": "Import"
   },
+  "options_button_preset": {
+    "message": "Restore Preset"
+  },
   "options_button_save": {
     "message": "Save"
   },
@@ -118,6 +121,9 @@
   },
   "options_tooltip_import": {
     "message": "Import templates from a local JSON file."
+  },
+  "options_tooltip_preset": {
+    "message": "Restore preset templates. Template will not be added if there is a template with the same name."
   },
   "options_tooltip_save": {
     "message": "Save templates to persistent storage. Empty templates are removed."

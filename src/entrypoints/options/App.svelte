@@ -5,7 +5,7 @@
   import { flip } from 'svelte/animate';
 
   import { COMMAND_P2B_REFRESH_MENU } from '@/lib/command';
-  import { type FormatTemplate, loadTemplates, saveTemplates, serialize } from '@/lib/storage';
+  import { type FormatTemplate, createPresetTemplates, loadTemplates, saveTemplates, serialize } from '@/lib/storage';
 
   import { importTemplates, exportTemplates } from './imex';
 
@@ -134,6 +134,15 @@
     );
   }
 
+  function restorePreset() {
+    const presetTemplates = createPresetTemplates();
+    for (let presetTemplate of presetTemplates) {
+      if (!ftemplForms.some((ftemplForm) => ftemplForm.name === presetTemplate.name)) {
+        addTemplate(presetTemplate);
+      }
+    }
+  }
+
   const flipDurationMs = 200;
 
   function handleSort(e: CustomEvent<DndEvent<FormatTemplateForm>>) {
@@ -213,6 +222,12 @@
         buttonTitle={browser.i18n.getMessage('options_button_import')}
         tooltip={browser.i18n.getMessage('options_tooltip_import')}
         callback={clickImportFile}
+      />
+      <TTButton
+        buttonClass="btn preset-filled-tertiary-300-700 dark:text-gray-100"
+        buttonTitle={browser.i18n.getMessage('options_button_preset')}
+        tooltip={browser.i18n.getMessage('options_tooltip_preset')}
+        callback={restorePreset}
       />
     </div>
     <input id="import-file" class="hidden" type="file" onchange={handleImport}/>
