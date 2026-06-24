@@ -253,7 +253,7 @@
     {#await storagePromise}
     <p>Loading...</p>
     {:then}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8"
+    <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"
       use:dragHandleZone="{{items: ftemplForms, flipDurationMs,
         dropTargetStyle: { outline: 'var(--color-success-500) solid 2px',  borderRadius: '12px' } }}"
       onconsider="{handleSort}"
