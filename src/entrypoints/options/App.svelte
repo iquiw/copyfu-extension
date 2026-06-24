@@ -113,8 +113,12 @@
     importTemplates(file,
       (ftemplsImport) => {
         ftemplForms = [];
-        for (const ftempl of ftemplsImport) {
-          addTemplate(ftempl);
+        if (ftemplsImport.length === 0) {
+          addTemplate();
+        } else {
+          for (const ftempl of ftemplsImport) {
+            addTemplate(ftempl);
+          }
         }
         toaster.success({
           title: browser.i18n.getMessage('options_success_imported'),
