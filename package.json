@@ -12,7 +12,7 @@
     "svelte-dnd-action": "^0.9.70",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8",
+    "vitest": "^4.1.9",
     "wxt": "^0.20.26"
   },
   "description": "Copy Formatted URL and title",
@@ -30,8 +30,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.1",
     "liquidjs": "^10.27.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.1"
   }
 }
