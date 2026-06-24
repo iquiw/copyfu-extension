@@ -240,23 +240,3 @@ $ bun i
 $ bun run zip             # for Chrome
 $ bun run zip:firefox     # for Firefox
 ```
-
-### TODO
-
-- [x] Copy formatted template
-- [x] Save format templates
-- [x] Sort format templates by DnD
-- [x] Shortcut for popup
-- [x] Shortcuts for copy
-- [x] App icon
-- [x] Icon font
-- [x] Liquid filter `sub`, `gsub`
-- [x] Liquid filter `match`
-- [x] Liquid filter `url_parse`
-- [x] Export
-- [x] Import
-- [x] I18N
-- [x] Preset
-- [x] Visual effect at copy
-- [x] RSS/Atom feeds
-- [x] URL pattern for visible template
