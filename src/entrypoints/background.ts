@@ -66,9 +66,10 @@ export default defineBackground(() => {
   });
 
   browser.runtime.onInstalled.addListener((details) => {
-    loadTemplates().then((ftempls) => {
+    loadTemplates().then(async (ftempls) => {
       if (ftempls.length == 0) {
-        saveTemplates(createPresetTemplates());
+        const ftemplsSaved = await saveTemplates(createPresetTemplates());
+        updateContextMenus(ftemplsSaved);
       }
     });
   });
