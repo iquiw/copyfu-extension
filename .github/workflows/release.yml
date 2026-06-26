@@ -5,27 +5,39 @@ on:
     tags:
       - '*'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
 jobs:
   release:
+    name: Release copyfu
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Create GitHub release
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          no-cache: true
 
       - name: Check version in package.json
         run: |
           version=$(bun -p 'import { version } from "./package.json"; version')
-          test "$version" = "${{ github.ref_name }}"
+          test "$version" = "${GITHUB_REF_NAME}"
 
       - name: Install dependencies
         run: |
           bun install
 
       - name: Generate a changelog
-        uses: orhun/git-cliff-action@e16f179f0be49ecdfe63753837f20b9531642772 # v4.7.0
+        uses: orhun/git-cliff-action@f50e11560dce63f7c33227798f90b924471a88b5 # v4.8.0
         id: git-cliff
         with:
           config: cliff.toml
@@ -39,10 +51,11 @@ jobs:
           bun run zip:firefox
 
       - name: Create Release
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
-        with:
-          artifacts: ".output/*.zip"
-          artifactContentType: application/octet-stream
-          name: v${{ github.ref_name }}
-          body: ${{ steps.git-cliff.outputs.content }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+              --title "v${GITHUB_REF_NAME}" \
+              --notes "${RELEASE_NOTES}" \
+              .output/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_NOTES: ${{ steps.git-cliff.outputs.content }}
