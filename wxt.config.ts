@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   srcDir: 'src',
   manifest: {
+    name: 'copyfu: Copy Formatted URL and title',
+    description: "URL and title can be formatted using user-defined Liquid templates.",
     permissions: ['activeTab', 'clipboardWrite', 'contextMenus', 'storage', 'tabs'],
     commands: {
       '_execute_action': {
