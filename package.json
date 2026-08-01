@@ -33,5 +33,9 @@
     "@tailwindcss/vite": "^4.3.1",
     "liquidjs": "^10.27.1",
     "tailwindcss": "^4.3.1"
-  }
+  },
+  "engines": {
+    "node": "24"
+  },
+  "packageManager": "pnpm@11.18.0"
 }
