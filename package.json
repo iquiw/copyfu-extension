@@ -31,7 +31,7 @@
   "type": "module",
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "liquidjs": "^10.27.1",
+    "liquidjs": "^10.28.0",
     "tailwindcss": "^4.3.3"
   },
   "engines": {

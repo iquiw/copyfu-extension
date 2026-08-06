@@ -18,8 +18,8 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3(vite@8.1.4(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0))
       liquidjs:
-        specifier: ^10.27.1
-        version: 10.27.2
+        specifier: ^10.28.0
+        version: 10.28.0
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -1321,8 +1321,8 @@ packages:
       canvas:
         optional: true
 
-  liquidjs@10.27.2:
-    resolution: {integrity: sha512-kvknfAEtOHjHkAAv7GxLEJh8ghpMQm3Fc4uWVyF7hERSTsSRsdC7saWs0p5aDG7GDcWsu5o+T4232O+8KZO55w==}
+  liquidjs@10.28.0:
+    resolution: {integrity: sha512-b6tmBXYMQTuGPnM5vB0CuZMo5kvmKMtSB/gvUWP6RFn2pIB5s+bJkBfIyJnattkc5bgeAiflrZVptx3iaLLioQ==}
     engines: {node: '>=16'}
     hasBin: true
 
@@ -2972,7 +2972,7 @@ snapshots:
       htmlparser2: 10.1.0
       uhyphen: 0.2.0
 
-  liquidjs@10.27.2:
+  liquidjs@10.28.0:
     dependencies:
       commander: 10.0.1
 
