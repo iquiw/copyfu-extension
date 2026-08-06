@@ -48,7 +48,7 @@ async function copyLinkFromContextMenu(index: number, url: string, tabId: number
     try {
       await browser.tabs.sendMessage(tabId, {
         action: COMMAND_B2C_COPY_LINK,
-        template: ftempl.template,
+        template: ftempl?.template,
         url,
       });
     } catch (e) {

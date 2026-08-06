@@ -60,7 +60,7 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
     if (tabs.length > 0) {
       let feeds: Feed[] = [];
       const tab = tabs[0];
-      if (tab.id && areFeedsRequired(template)) {
+      if (tab?.id && areFeedsRequired(template)) {
         const rsp = await browser.tabs.sendMessage(tab.id, { action: COMMAND_P2C_QUERY_FEED });
         for (const feed of rsp.feeds) {
           feeds.push(feed);
@@ -69,11 +69,11 @@ export async function copyFormattedTemplate(template: string): Promise<FormatRes
           return FormatResult.NoLink;
         }
       }
-      const url = tab.url ?? '';
+      const url = tab?.url ?? '';
       const text = formatTemplate(template, {
         url: url,
-        title: tab.title ?? '',
-        faviconUrl: tab.favIconUrl ?? '',
+        title: tab?.title ?? '',
+        faviconUrl: tab?.favIconUrl ?? '',
         feeds,
       });
       const typedText = parseCopyOutput(text, url);

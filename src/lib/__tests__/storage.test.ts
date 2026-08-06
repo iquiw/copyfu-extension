@@ -37,32 +37,32 @@ describe('deserialize v1', () => {
   it('should deserialize one template', async () => {
     const ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"}]}');
     expect(ftempls).toHaveLength(1);
-    expect(ftempls[0].id).toBeDefined();
-    expect(ftempls[0].name).toBe('Markdown');
-    expect(ftempls[0].urlPattern).toBe('');
-    expect(ftempls[0].template).toBe('[{{title}}]({{url}})');
+    expect(ftempls[0]?.id).toBeDefined();
+    expect(ftempls[0]?.name).toBe('Markdown');
+    expect(ftempls[0]?.urlPattern).toBe('');
+    expect(ftempls[0]?.template).toBe('[{{title}}]({{url}})');
   });
 
   it('should deserialize 2 templates', async () => {
     const ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})"},{"name":"Org Mode","template":"[[{{url}}][{{title}}]]"}]}');
     expect(ftempls).toHaveLength(2);
-    expect(ftempls[0].id).toBeDefined();
-    expect(ftempls[0].name).toBe('Markdown');
-    expect(ftempls[0].urlPattern).toBe('');
-    expect(ftempls[0].template).toBe('[{{title}}]({{url}})');
-    expect(ftempls[1].id).toBeDefined();
-    expect(ftempls[1].name).toBe('Org Mode');
-    expect(ftempls[1].urlPattern).toBe('');
-    expect(ftempls[1].template).toBe('[[{{url}}][{{title}}]]');
+    expect(ftempls[0]?.id).toBeDefined();
+    expect(ftempls[0]?.name).toBe('Markdown');
+    expect(ftempls[0]?.urlPattern).toBe('');
+    expect(ftempls[0]?.template).toBe('[{{title}}]({{url}})');
+    expect(ftempls[1]?.id).toBeDefined();
+    expect(ftempls[1]?.name).toBe('Org Mode');
+    expect(ftempls[1]?.urlPattern).toBe('');
+    expect(ftempls[1]?.template).toBe('[[{{url}}][{{title}}]]');
   });
 
   it('should ignore unknown properties', async () => {
     const ftempls = deserialize('{"version":"1","templates":[{"name":"Markdown","template":"[{{title}}]({{url}})","unknown":"foo"}],"unknown":"3"}');
     expect(ftempls).toHaveLength(1);
-    expect(ftempls[0].id).toBeDefined();
-    expect(ftempls[0].name).toBe('Markdown');
-    expect(ftempls[0].urlPattern).toBe('');
-    expect(ftempls[0].template).toBe('[{{title}}]({{url}})');
+    expect(ftempls[0]?.id).toBeDefined();
+    expect(ftempls[0]?.name).toBe('Markdown');
+    expect(ftempls[0]?.urlPattern).toBe('');
+    expect(ftempls[0]?.template).toBe('[{{title}}]({{url}})');
   });
 });
 
@@ -97,23 +97,23 @@ describe('deserialize v2', () => {
   it('should deserialize one template', async () => {
     const ftempls = deserialize('{"version":"2","templates":[{"id":"55c20d49-9f6e-4423-a4c1-d5a22ec9f26c","name":"Markdown","urlPattern":"https://example.com","template":"[{{title}}]({{url}})"}]}');
     expect(ftempls).toHaveLength(1);
-    expect(ftempls[0].id).toBe('55c20d49-9f6e-4423-a4c1-d5a22ec9f26c');
-    expect(ftempls[0].name).toBe('Markdown');
-    expect(ftempls[0].urlPattern).toBe('https://example.com');
-    expect(ftempls[0].template).toBe('[{{title}}]({{url}})');
+    expect(ftempls[0]?.id).toBe('55c20d49-9f6e-4423-a4c1-d5a22ec9f26c');
+    expect(ftempls[0]?.name).toBe('Markdown');
+    expect(ftempls[0]?.urlPattern).toBe('https://example.com');
+    expect(ftempls[0]?.template).toBe('[{{title}}]({{url}})');
   });
 
   it('should deserialize 2 templates', async () => {
     const ftempls = deserialize('{"version":"2","templates":[{"id":"55c20d49-9f6e-4423-a4c1-d5a22ec9f26c","name":"Markdown","urlPattern":"https://example.com","template":"[{{title}}]({{url}})"},{"id":"d50044d0-cf8c-4796-809d-fe477e500ff2","name":"Org Mode","urlPattern":"","template":"[[{{url}}][{{title}}]]"}]}');
     expect(ftempls).toHaveLength(2);
-    expect(ftempls[0].id).toBe('55c20d49-9f6e-4423-a4c1-d5a22ec9f26c');
-    expect(ftempls[0].name).toBe('Markdown');
-    expect(ftempls[0].urlPattern).toBe('https://example.com');
-    expect(ftempls[0].template).toBe('[{{title}}]({{url}})');
-    expect(ftempls[1].id).toBe('d50044d0-cf8c-4796-809d-fe477e500ff2');
-    expect(ftempls[1].name).toBe('Org Mode');
-    expect(ftempls[1].urlPattern).toBe('');
-    expect(ftempls[1].template).toBe('[[{{url}}][{{title}}]]');
+    expect(ftempls[0]?.id).toBe('55c20d49-9f6e-4423-a4c1-d5a22ec9f26c');
+    expect(ftempls[0]?.name).toBe('Markdown');
+    expect(ftempls[0]?.urlPattern).toBe('https://example.com');
+    expect(ftempls[0]?.template).toBe('[{{title}}]({{url}})');
+    expect(ftempls[1]?.id).toBe('d50044d0-cf8c-4796-809d-fe477e500ff2');
+    expect(ftempls[1]?.name).toBe('Org Mode');
+    expect(ftempls[1]?.urlPattern).toBe('');
+    expect(ftempls[1]?.template).toBe('[[{{url}}][{{title}}]]');
   });
 });
 

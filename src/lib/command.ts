@@ -7,7 +7,7 @@ const CommandRegexp = new RegExp('copy-template-(\\d+)');
 
 export function findTemplateIndex(command: string): number | null {
   const match = CommandRegexp.exec(command);
-  if (match) {
+  if (match && match[1]) {
     const index = parseInt(match[1], 10);
     return index;
   }

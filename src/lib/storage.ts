@@ -52,7 +52,7 @@ function sanitize(ftempls: FormatTemplate[] | null): FormatTemplate[] {
   const sanitized = [];
   if (ftempls != null) {
     // Skip if only one element exists with empty values.
-    if (!(ftempls.length == 1 && ftempls[0].name == '' && ftempls[0].urlPattern == '' && ftempls[0].template == '')) {
+    if (!(ftempls.length == 1 && ftempls[0]?.name == '' && ftempls[0]?.urlPattern == '' && ftempls[0]?.template == '')) {
       for (const ftempl of ftempls) {
         sanitized.push({
           id: ftempl.id,

@@ -13,7 +13,7 @@
     eventProcessing = true;
     const button = event?.currentTarget;
     if (button != null && formatsCache != null && formatResults != null && index < formatsCache.length) {
-      const template = formatsCache[index].template;
+      const template = formatsCache[index]?.template ?? '';
       const result = await copyFormattedTemplate(template);
       formatResults[index] = result;
       if (result == FormatResult.Success) {
@@ -64,7 +64,7 @@
   });
   if (tabs.length > 0) {
     const tab = tabs[0];
-    if (tab.url) {
+    if (tab?.url) {
       url = tab.url;
     }
   }
