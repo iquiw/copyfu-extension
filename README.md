@@ -227,16 +227,16 @@ Templates starting with `!copyfu:html` are copied as HTML text.
 
 ### Prerequisites
 
-[bun](https://bun.sh) needs to be installed.  
+[pnpm](https://pnpm.io) needs to be installed.  
 Then, install dependencies.
 
 ```console
-$ bun i
+$ pnpm i
 ```
 
 ### Build
 
 ```console
-$ bun run zip             # for Chrome
-$ bun run zip:firefox     # for Firefox
+$ pnpm run zip             # for Chrome
+$ pnpm run zip:firefox     # for Firefox
 ```
