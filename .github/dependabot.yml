@@ -13,14 +13,14 @@ updates:
       svelte:
         update-types: [minor, patch]
         patterns:
-          - "svelte*"
+          - "svelte"
+          - "svelte-check"
           - "@tsconfig/svelte"
-        exclude-patterns:
-          - "svelte-dnd-action"
       skeleton:
         update-types: [minor, patch]
         patterns:
-          - "@skeletonlabs/*"
+          - "@skeletonlabs/skeleton"
+          - "@skeletonlabs/skeleton-svelte"
       tailwind:
         update-types: [minor, patch]
         patterns:
@@ -30,7 +30,8 @@ updates:
         update-types: [minor, patch]
         patterns:
           - "wxt"
-          - "@wxt*"
+          - "@wxt-dev/auto-icons"
+          - "@wxt-dev/module-svelte"
           - "web-ext"
       minor-and-patch:
         update-types: [minor, patch]
