@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: "friday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    cooldown:
+      default-days: 7
+    groups:
+      svelte:
+        update-types: [minor, patch]
+        patterns:
+          - "svelte*"
+          - "@tsconfig/svelte"
+        exclude-patterns:
+          - "svelte-dnd-action"
+      skeleton:
+        update-types: [minor, patch]
+        patterns:
+          - "@skeletonlabs/*"
+      tailwind:
+        update-types: [minor, patch]
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/vite"
+      wxt:
+        update-types: [minor, patch]
+        patterns:
+          - "wxt"
+          - "@wxt*"
+          - "web-ext"
+      minor-and-patch:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: "friday"
+      time: "09:00"
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "ci(deps): "
