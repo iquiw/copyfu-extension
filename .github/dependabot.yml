@@ -38,6 +38,8 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    assignees:
+      - "iquiw"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
@@ -48,3 +50,5 @@ updates:
       default-days: 7
     commit-message:
       prefix: "ci(deps): "
+    assignees:
+      - "iquiw"
