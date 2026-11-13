@@ -41,3 +41,11 @@ jobs:
       - name: Run test
         run: |
           pnpm run test --run
+
+      - name: Build (Chrome)
+        run: |
+          pnpm run build
+
+      - name: Build (Firefox)
+        run: |
+          pnpm run build:firefox
